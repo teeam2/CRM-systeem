@@ -1,0 +1,49 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+<ul class="navbar">
+  <li><a href="CRM home.html">Home</a></li>
+  <li><a href="CRM klanten.php">Klanten</a></li>
+  <li><a href="CRM medewerkers.php">Medewerkers</a></li>
+  <li><a href="CRM opdrachten.php">Opdrachten</a></li>
+  <li><a class="active" href="Inlog pagina.php">Inloggen</a></li>
+
+  <li class="search-container">
+      <form action="" method="get">
+          <input type="text" name="search" placeholder="Search user by name">
+      </form>
+  </li>
+</ul>
+
+
+<?php 
+     $db_server = "localhost";
+     $db_user = "root";
+     $db_pass = "";
+     $db_name = "crm_systeem";
+     $conn = "";
+
+     $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+
+    if($conn){
+      echo "";
+    }
+    else{
+      echo "you did not do it";
+    }
+
+
+
+
+$conn->close();
+
+        ?>
+</body>
+</html>

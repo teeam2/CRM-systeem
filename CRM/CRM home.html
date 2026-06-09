@@ -23,6 +23,36 @@
             border-bottom: 1px solid #ddd;
         }
 
+        /* NAVBAR BALK */
+        .navbar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background-color: #000;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        /* hover effect */
+        .navbar li a:hover {
+            background-color: #4a90e2;
+        }
+
+        /* active page */
+        .navbar li a.active {
+            background-color: #4a90e2;
+        }
+
         .logo {
             font-size: 22px;
             font-weight: bold;
@@ -32,7 +62,7 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 25px;
+            gap: 0px;
             padding: 0;
             margin: 0;
             color: rgb(255, 255, 255);
@@ -110,7 +140,7 @@
     <nav class="navbar">
         <div class="logo">Mijn CRM</div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
+            <li><a class="active" href="#">Home</a></li>
             <li><a href="CRM klanten.php">Klanten</a></li>
             <li><a href="CRM medewerkers.php">medewerkers</a></li>
             <li><a href="CRM opdrachten.php">opdrachten</a></li>
@@ -135,14 +165,14 @@
         <div class="card">
             <h3>Projecten</h3>
             <p>bekijk allen klanten.</p>
-            <a href="CRM medewerkers.php" class="card-button">medewerkers</a>
+            <a href="CRM medewerkers.php" class="card-button">Medewerkers</a>
 
         </div>
 
         <div class="card">
             <h3>Offertes</h3>
             <p>bekijk allen opdrachten.</p>
-            <a href="CRM opdrachten.php" class="card-button">opdrachten</a>
+            <a href="CRM opdrachten.php" class="card-button">Opdrachten</a>
         </div>
 
         <div class="card">
