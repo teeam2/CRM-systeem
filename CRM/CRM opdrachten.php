@@ -11,8 +11,8 @@ ini_set('display_errors', 1);
 <ul class="navbar">
   <li><a href="CRM home.html">Home</a></li>
   <li><a href="CRM klanten.php">Klanten</a></li>
-  <li><a href="CRM medewerkers.php">medewerkers</a></li>
-  <li><a class="active" href="#">opdrachten</a></li>
+  <li><a href="CRM medewerkers.php">Medewerkers</a></li>
+  <li><a class="active" href="#">Opdrachten</a></li>
 
   <li class="search-container">
       <form action="" method="get">
