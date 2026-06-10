@@ -13,7 +13,8 @@ ini_set('display_errors', 1);
   <li><a href="CRM klanten.php">Klanten</a></li>
   <li><a href="CRM medewerkers.php">Medewerkers</a></li>
   <li><a href="CRM opdrachten.php">Opdrachten</a></li>
-  <li><a class="active" href="Inlog pagina.php">Inloggen</a></li>
+  <li><a href="CRM facturen.php">facturen</a></li>
+  <li><a class="active" href="#">Inloggen</a></li>
 
   <li class="search-container">
       <form action="" method="get">
