@@ -23,6 +23,29 @@ ini_set('display_errors', 1);
   </li>
 </ul>
 
+<div class="login-container">
+
+    <form method="POST">
+
+        <h2>Inloggen</h2>
+
+        <input type="email"
+               name="email"
+               placeholder="E-mailadres"
+               required>
+
+        <input type="password"
+               name="wachtwoord"
+               placeholder="Wachtwoord"
+               required>
+
+        <button type="submit" name="login">
+            Inloggen
+        </button>
+
+    </form>
+
+</div>
 
 <?php 
      $db_server = "localhost";
