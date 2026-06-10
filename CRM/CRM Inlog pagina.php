@@ -62,7 +62,35 @@ ini_set('display_errors', 1);
     else{
       echo "you did not do it";
     }
+        
+    if(isset($_POST['login'])){
 
+        $email = $_POST['email'];
+        $wachtwoord = $_POST['wachtwoord'];
+
+        $sql = "SELECT * FROM medewerkers
+                WHERE email='$email'";
+
+        $result = mysqli_query($conn, $sql);
+
+        if(mysqli_num_rows($result) > 0){
+
+            $user = mysqli_fetch_assoc($result);
+
+            if($wachtwoord == $user['wachtwoord']){
+
+                echo "Succesvol ingelogd!";
+
+            }
+            else{
+                echo "Wachtwoord incorrect";
+            }
+
+        }
+        else{
+            echo "Gebruiker bestaat niet";
+        }
+    }
 
 
 
