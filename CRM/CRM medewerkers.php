@@ -23,7 +23,7 @@ ini_set('display_errors', 1);
   </li>
 </ul>
 
-
+<a href="add_medewerker.php">Nieuwe medewerker toevoegen</a>
 
 
 <?php 
@@ -73,6 +73,7 @@ if ($result && $result->num_rows > 0) {
     echo "<th>telefoonnummer</th>";
     echo "<th>rol</th>";
     echo "<th>created_at</th>";
+    echo "<th>Acties</th>";
     echo "</tr>";
 
     // data uit database
@@ -90,6 +91,10 @@ if ($result && $result->num_rows > 0) {
         echo "<td>" . htmlspecialchars($row['telefoonnummer']) . "</td>";
         echo "<td>" . htmlspecialchars($row['rol']) . "</td>";
         echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
+
+        echo "<td>
+<a href='edit_medewerker.php?id=" . $row['medewerker_id'] . "'>Wijzigen</a>
+<a href='delete_medewerker.php?id=" . $row['medewerker_id'] . "' onclick='return confirm(\"Weet je het zeker?\")'>Verwijderen</a>";
 
         echo "</tr>";
     }
