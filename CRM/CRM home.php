@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['voornaam'])){
+    die("Je moet eerst inloggen");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -151,8 +159,9 @@
 
     <!-- Hero sectie -->
     <header class="hero">
-        <h1>Welkom terug!</h1>
+        <h1>Welkom <?php echo htmlspecialchars($_SESSION['voornaam'], ENT_QUOTES, 'UTF-8'); ?>!</h1>
         <p>Beheer je klanten, projecten en communicatie op een plek.</p>
+        <p>Rol: <?php echo htmlspecialchars($_SESSION['rol'], ENT_QUOTES, 'UTF-8'); ?></p>
     </header>
 
     <!-- Dashboard kaarten -->

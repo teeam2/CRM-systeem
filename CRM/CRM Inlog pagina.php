@@ -36,8 +36,12 @@ if(isset($_POST['login'])){
 
         if($wachtwoord == $user['wachtwoord']){
 
-            $message = "Succesvol ingelogd!";
-            $message_type = "success";
+            session_start();
+            $_SESSION['voornaam'] = $user['voornaam'];
+            $_SESSION['rol'] = $user['rol'];
+
+            header("Location: CRM home.php");
+            exit();
 
         }
         else{
