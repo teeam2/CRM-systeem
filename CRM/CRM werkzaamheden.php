@@ -31,7 +31,7 @@ ini_set('display_errors', 1);
   </li>
 </ul>
 
-
+<a href="add_werkzaamheid.php">Nieuwe werkzaamheid toevoegen</a>
 
 
 <?php 
@@ -74,6 +74,7 @@ if ($result && $result->num_rows > 0) {
     echo "<th>aantal_uren</th>";
     echo "<th>omschrijving</th>";
     echo "<th>created_at</th>";
+    echo "<th>Acties</th>";
     echo "</tr>";
 
     // data uit database
@@ -88,7 +89,10 @@ if ($result && $result->num_rows > 0) {
         echo "<td>" . htmlspecialchars($row['aantal_uren']) . "</td>";
         echo "<td>" . htmlspecialchars($row['omschrijving']) . "</td>";
         echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
-
+        
+        echo "<td>
+<a href='edit_werkzaamheid.php?id=" . $row['werkzaamheid_id'] . "'>Wijzigen</a>
+<a href='delete_werkzaamheid.php?id=" . $row['werkzaamheid_id'] . "' onclick='return confirm(\"Weet je het zeker?\")'>Verwijderen</a>";
 
         echo "</tr>";
     }
