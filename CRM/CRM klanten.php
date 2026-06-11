@@ -23,7 +23,7 @@ ini_set('display_errors', 1);
   </li>
 </ul>
 
-
+<a href="add_klant.php">Nieuwe klant toevoegen</a>
 
 
 <?php 
@@ -70,6 +70,7 @@ if ($result && $result->num_rows > 0) {
     echo "<th>functie</th>";
     echo "<th>email</th>";
     echo "<th>PhoneNumber</th>";
+    echo "<th>Acties</th>";
     echo "</tr>";
 
     // data uit database
@@ -85,6 +86,10 @@ if ($result && $result->num_rows > 0) {
         echo "<td>" . htmlspecialchars($row['functie']) . "</td>";
         echo "<td>" . htmlspecialchars($row['email']) . "</td>";
         echo "<td>" . htmlspecialchars($row['PhoneNumber']) . "</td>";
+
+        echo "<td>
+        <a href='edit_klant.php?id=" . $row['klanten_ID'] . "'>Wijzigen</a>
+        <a href='delete_klant.php?id=" . $row['klanten_ID'] . "' onclick='return confirm(\"Weet je het zeker?\")'>Verwijderen</a>";
 
         echo "</tr>";
     }
