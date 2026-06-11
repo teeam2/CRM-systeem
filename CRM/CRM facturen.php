@@ -23,7 +23,7 @@ ini_set('display_errors', 1);
   </li>
 </ul>
 
-
+<a href="add_factuur.php">Nieuwe factuur toevoegen</a>
 
 
 <?php 
@@ -68,6 +68,7 @@ if ($result && $result->num_rows > 0) {
     echo "<th>totaalbedrag</th>";
     echo "<th>status</th>";
     echo "<th>created_at</th>";
+    echo "<th>Acties</th>";
     echo "</tr>";
 
     // data uit database
@@ -82,6 +83,10 @@ if ($result && $result->num_rows > 0) {
         echo "<td>" . htmlspecialchars($row['totaalbedrag']) . "</td>";
         echo "<td>" . htmlspecialchars($row['status']) . "</td>";
         echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
+
+        echo "<td>
+<a href='edit_factuur.php?id=" . $row['factuur_id'] . "'>Wijzigen</a>
+<a href='delete_factuur.php?id=" . $row['factuur_id'] . "' onclick='return confirm(\"Weet je het zeker?\")'>Verwijderen</a>";
 
         echo "</tr>";
     }
