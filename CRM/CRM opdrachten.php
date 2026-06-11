@@ -20,6 +20,7 @@ ini_set('display_errors', 1);
   <li><a href="CRM klanten.php">Klanten</a></li>
   <li><a href="CRM medewerkers.php">Medewerkers</a></li>
   <li><a class="active" href="#">Opdrachten</a></li>
+  <li><a href="CRM werkzaamheden.php">Werkzaamheden</a></li>
   <li><a href="CRM facturen.php">Facturen</a></li>
   <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
 

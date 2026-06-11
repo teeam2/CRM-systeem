@@ -20,8 +20,8 @@ ini_set('display_errors', 1);
   <li><a href="CRM klanten.php">Klanten</a></li>
   <li><a href="CRM medewerkers.php">Medewerkers</a></li>
   <li><a href="CRM opdrachten.php">Opdrachten</a></li>
-  <li><a href="CRM werkzaamheden.php">Werkzaamheden</a></li>
-  <li><a class="active" href="#">Facturen</a></li>
+  <li><a class="active" href="#">Werkzaamheden</a></li>
+  <li><a href="CRM facturen.php">Facturen</a></li>
   <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
 
   <li class="search-container">
@@ -31,7 +31,7 @@ ini_set('display_errors', 1);
   </li>
 </ul>
 
-<a href="add_factuur.php">Nieuwe factuur toevoegen</a>
+
 
 
 <?php 
@@ -50,14 +50,12 @@ ini_set('display_errors', 1);
       echo "you did not do it";
     }
 
-$sql = "SELECT factuur_id, klant_id, opdracht_id, factuurdatum, totaalbedrag, status, created_at FROM facturen";
+$sql = "SELECT werkzaamheid_id, medewerker_id, opdracht_id, datum, aantal_uren, omschrijving, created_at FROM werkzaamheden";
 
 if(isset($_GET["search"]) && !empty($_GET["search"])) {
     $search_term = $_GET["search"];
 
-    $sql .= " WHERE factuur_id LIKE '$search_term'
-              OR status LIKE '%$search_term%'
-              OR factuurdatum LIKE '$search_term'";
+    $sql .= " WHERE werkzaamheid_id LIKE '$search_term'";
 }
 
 $result = $conn->query($sql);
@@ -69,14 +67,13 @@ if ($result && $result->num_rows > 0) {
 
     // kolom namen
     echo "<tr>";
-    echo "<th>factuur_id</th>";
-    echo "<th>klant_id</th>";
+    echo "<th>werkzaamheid_id</th>";
+    echo "<th>medewerker_id</th>";
     echo "<th>opdracht_id</th>";
-    echo "<th>factuurdatum</th>";
-    echo "<th>totaalbedrag</th>";
-    echo "<th>status</th>";
+    echo "<th>datum</th>";
+    echo "<th>aantal_uren</th>";
+    echo "<th>omschrijving</th>";
     echo "<th>created_at</th>";
-    echo "<th>Acties</th>";
     echo "</tr>";
 
     // data uit database
@@ -84,17 +81,14 @@ if ($result && $result->num_rows > 0) {
 
         echo "<tr>";
 
-        echo "<td>" . htmlspecialchars($row['factuur_id']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['klant_id']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['werkzaamheid_id']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['medewerker_id']) . "</td>";
         echo "<td>" . htmlspecialchars($row['opdracht_id']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['factuurdatum']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['totaalbedrag']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['datum']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['aantal_uren']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['omschrijving']) . "</td>";
         echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
 
-        echo "<td>
-<a href='edit_factuur.php?id=" . $row['factuur_id'] . "'>Wijzigen</a>
-<a href='delete_factuur.php?id=" . $row['factuur_id'] . "' onclick='return confirm(\"Weet je het zeker?\")'>Verwijderen</a>";
 
         echo "</tr>";
     }

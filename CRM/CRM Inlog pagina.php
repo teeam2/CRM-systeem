@@ -79,6 +79,7 @@ if(isset($_POST['login'])){
     <li><a href="CRM klanten.php">Klanten</a></li>
     <li><a href="CRM medewerkers.php">Medewerkers</a></li>
     <li><a href="CRM opdrachten.php">Opdrachten</a></li>
+    <li><a href="CRM werkzaamheden.php">Werkzaamheden</a></li>
     <li><a href="CRM facturen.php">Facturen</a></li>
     <li><a class="active" href="#">Inloggen</a></li>
 
