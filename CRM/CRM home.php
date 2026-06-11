@@ -160,9 +160,29 @@ ini_set('display_errors', 1);
 
     <!-- Hero sectie -->
     <header class="hero">
-        <h1>Welkom <?php echo htmlspecialchars($_SESSION['voornaam'], ENT_QUOTES, 'UTF-8'); ?>!</h1>
+        <h1>
+        <?php
+        if(isset($_SESSION['voornaam'])){
+            echo "Welkom " .
+            htmlspecialchars($_SESSION['voornaam'], ENT_QUOTES, 'UTF-8') .
+            "!";
+        }
+        else{
+            echo "Welkom gast!";
+        }
+        ?>
+        </h1>
         <p>Beheer je klanten, projecten en communicatie op een plek.</p>
-        <p>Rol: <?php echo htmlspecialchars($_SESSION['rol'], ENT_QUOTES, 'UTF-8'); ?></p>
+        <?php
+        if(isset($_SESSION['rol'])){
+            echo "Rol: " .
+            htmlspecialchars($_SESSION['rol'], ENT_QUOTES, 'UTF-8');
+        }
+        else{
+            echo "Niet ingelogd";
+        }
+        ?>
+        </p>
     </header>
 
     <!-- Dashboard kaarten -->
