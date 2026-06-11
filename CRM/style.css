@@ -92,3 +92,85 @@ tr:last-child td {
     outline: none;
     font-size: 14px;
 }
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.login-container form {
+    background: white;
+    padding: 40px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-container h2 {
+    text-align: center;
+}
+
+.login-container input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.login-container button {
+    padding: 12px;
+    border: none;
+    background: #4a90e2;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-container button:hover {
+    opacity: 0.9;
+}
+
+.popup {
+    width: 350px;
+    margin: 20px auto;
+    padding: 15px;
+
+    text-align: center;
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    animation: fadeIn 0.3s ease;
+}
+
+/* groene popup */
+.popup.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 2px solid #28a745;
+}
+
+/* rode popup */
+.popup.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 2px solid #dc3545;
+}
+
+/* kleine animatie */
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
