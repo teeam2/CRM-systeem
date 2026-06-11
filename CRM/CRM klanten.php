@@ -1,12 +1,21 @@
 <?php
 session_start();
 
+
 if(!isset($_SESSION['voornaam'])){
-    die("Je moet eerst inloggen");
+?>
+    <p>Je moet eerst inloggen</p>
+    <a href="CRM inlog pagina.php">← Ga naar login</a>
+<?php
+    exit;
 }
 
 if($_SESSION['rol'] != 'admin'){
-    die("Geen toegang");
+?>
+    <p>Geen toegang</p>
+    <a href="CRM home.php">← ga naar home</a>
+<?php
+    exit;
 }
 
 error_reporting(E_ALL);
