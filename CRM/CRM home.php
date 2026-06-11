@@ -4,7 +4,11 @@ session_start();
 if(!isset($_SESSION['voornaam'])){
     die("Je moet eerst inloggen");
 }
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="nl">

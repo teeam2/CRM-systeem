@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['voornaam'])){
+    die("Je moet eerst inloggen");
+}
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -69,7 +75,7 @@ if(isset($_POST['login'])){
 <body>
 
 <ul class="navbar">
-    <li><a href="CRM home.html">Home</a></li>
+    <li><a href="CRM home.php">Home</a></li>
     <li><a href="CRM klanten.php">Klanten</a></li>
     <li><a href="CRM medewerkers.php">Medewerkers</a></li>
     <li><a href="CRM opdrachten.php">Opdrachten</a></li>
