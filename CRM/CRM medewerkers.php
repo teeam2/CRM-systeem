@@ -54,7 +54,7 @@ ini_set('display_errors', 1);
       echo "you did not do it";
     }
 
-$sql = "SELECT medewerker_id, voornaam, tussenvoegsel, achternaam, functie, email, wachtwoord, telefoonnummer, rol, created_at FROM medewerkers";
+$sql = "SELECT medewerker_id, voornaam, tussenvoegsel, achternaam, functie, email, telefoonnummer, rol, created_at FROM medewerkers";
 
 if(isset($_GET["search"]) && !empty($_GET["search"])) {
     $search_term = $_GET["search"];
@@ -81,7 +81,6 @@ if ($result && $result->num_rows > 0) {
     echo "<th>achternaam</th>";
     echo "<th>functie</th>";
     echo "<th>email</th>";
-    echo "<th>wachtwoord</th>";
     echo "<th>telefoonnummer</th>";
     echo "<th>rol</th>";
     echo "<th>created_at</th>";
@@ -99,7 +98,6 @@ if ($result && $result->num_rows > 0) {
         echo "<td>" . htmlspecialchars($row['achternaam']) . "</td>";
         echo "<td>" . htmlspecialchars($row['functie']) . "</td>";
         echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['wachtwoord']) . "</td>";
         echo "<td>" . htmlspecialchars($row['telefoonnummer']) . "</td>";
         echo "<td>" . htmlspecialchars($row['rol']) . "</td>";
         echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
