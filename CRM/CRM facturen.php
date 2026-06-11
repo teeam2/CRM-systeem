@@ -19,44 +19,51 @@ ini_set('display_errors', 1);
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-<ul class="navbar">
-  <li><a href="CRM home.php">Home</a></li>
-  <li><a href="CRM klanten.php">Klanten</a></li>
-  <li><a href="CRM medewerkers.php">Medewerkers</a></li>
-  <li><a href="CRM opdrachten.php">Opdrachten</a></li>
-  <li><a href="CRM werkzaamheden.php">Werkzaamheden</a></li>
-  <li><a class="active" href="#">Facturen</a></li>
-  <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
 
-  <li class="search-container">
-      <form action="" method="get">
-          <input type="text" name="search" placeholder="Search user by name">
-      </form>
-  </li>
+<ul class="navbar">
+    <li><a href="CRM home.php">Home</a></li>
+    <li><a href="CRM klanten.php">Klanten</a></li>
+    <li><a href="CRM medewerkers.php">Medewerkers</a></li>
+    <li><a href="CRM opdrachten.php">Opdrachten</a></li>
+    <li><a href="CRM werkzaamheden.php">Werkzaamheden</a></li>
+    <li><a class="active" href="#">Facturen</a></li>
+    <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
+
+    <li class="search-container">
+        <form action="" method="get">
+            <input type="text"
+                   name="search"
+                   placeholder="Search user by name">
+        </form>
+    </li>
 </ul>
 
 <a href="add_factuur.php">Nieuwe factuur toevoegen</a>
 
+<?php
 
-<?php 
-     $db_server = "localhost";
-     $db_user = "root";
-     $db_pass = "";
-     $db_name = "crm_systeem";
-     $conn = "";
+$db_server = "localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "crm_systeem";
 
-     $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+$conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 
-    if($conn){
-      echo "";
-    }
-    else{
-      echo "you did not do it";
-    }
+if(!$conn){
+    die("Database connectie mislukt");
+}
 
-$sql = "SELECT factuur_id, klant_id, opdracht_id, factuurdatum, totaalbedrag, status, created_at FROM facturen";
+$sql = "SELECT factuur_id,
+               klant_id,
+               opdracht_id,
+               factuurdatum,
+               totaalbedrag,
+               status,
+               created_at
+        FROM facturen";
 
 if(isset($_GET["search"]) && !empty($_GET["search"])) {
+
     $search_term = $_GET["search"];
 
     $sql .= " WHERE factuur_id LIKE '$search_term'
@@ -71,7 +78,6 @@ if ($result && $result->num_rows > 0) {
     echo "<div class='table-wrapper'>";
     echo "<table>";
 
-    // kolom namen
     echo "<tr>";
     echo "<th>factuur_id</th>";
     echo "<th>klant_id</th>";
@@ -83,7 +89,6 @@ if ($result && $result->num_rows > 0) {
     echo "<th>Acties</th>";
     echo "</tr>";
 
-    // data uit database
     while($row = $result->fetch_assoc()) {
 
         echo "<tr>";
@@ -97,8 +102,31 @@ if ($result && $result->num_rows > 0) {
         echo "<td>" . htmlspecialchars($row['created_at']) . "</td>";
 
         echo "<td>
-<a href='edit_factuur.php?id=" . $row['factuur_id'] . "'>Wijzigen</a>
-<a href='delete_factuur.php?id=" . $row['factuur_id'] . "' onclick='return confirm(\"Weet je het zeker?\")'>Verwijderen</a>";
+
+        <a href='edit_factuur.php?id=" . $row['factuur_id'] . "'>
+        Wijzigen
+        </a>
+
+        |
+
+        <a href='delete_factuur.php?id=" . $row['factuur_id'] . "'
+        onclick='return confirm(\"Weet je het zeker?\")'>
+        Verwijderen
+        </a>
+
+        |
+
+        <a href='download_factuur.php?id=" . $row['factuur_id'] . "'>
+        PDF
+        </a>
+
+        |
+
+        <a href='verstuur_factuur.php?id=" . $row['factuur_id'] . "'>
+        Versturen
+        </a>
+
+        </td>";
 
         echo "</tr>";
     }
@@ -107,12 +135,14 @@ if ($result && $result->num_rows > 0) {
     echo "</div>";
 
 } else {
+
     echo "0 resultaten";
 }
 
 $conn->close();
 
-        ?>
-</div>
+?>
+
 </body>
 </html>
+```
