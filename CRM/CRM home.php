@@ -191,6 +191,12 @@ ini_set('display_errors', 1);
         </div>
 
         <div class="card">
+            <h3>Werkzaamheden</h3>
+            <p>Bekijk allen werkzaamheden.</p>
+            <a href="CRM werkzaamheden.php" class="card-button">Werkzaamheden</a>
+        </div>
+
+        <div class="card">
             <h3>Facturen</h3>
             <p>Bekijk allen facturen.</p>
             <a href="CRM facturen.php" class="card-button">Facturen</a>
