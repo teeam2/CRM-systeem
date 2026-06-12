@@ -114,21 +114,18 @@ if ($result && $result->num_rows > 0) {
         <a href='edit_factuur.php?id=" . $row['factuur_id'] . "'>
         Wijzigen
         </a>
-
-        |
+  
 
         <a href='delete_factuur.php?id=" . $row['factuur_id'] . "'
         onclick='return confirm(\"Weet je het zeker?\")'>
         Verwijderen
         </a>
 
-        |
-
+        
         <a href='download_factuur.php?id=" . $row['factuur_id'] . "'>
         PDF
         </a>
 
-        |
 
         <a href='verstuur_factuur.php?id=" . $row['factuur_id'] . "'>
         Versturen
