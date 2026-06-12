@@ -14,9 +14,12 @@ ini_set('display_errors', 1);
 ?>
 
 <!DOCTYPE html>
+<html lang="nl">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Werkzaamheden</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <ul class="navbar">
