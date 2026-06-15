@@ -37,6 +37,8 @@ if(isset($_POST['toevoegen']))
 
 <h2>Nieuwe opdracht</h2>
 
+<link rel="stylesheet" href="../toevoegen en wijzigen.css">
+
 <form method="post">
 
 Klant ID:<br>

@@ -1,0 +1,167 @@
+/* BASIS */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    margin: 0;
+    padding: 20px;
+}
+
+/* TITELS */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ===================== */
+/* FORM STYLING (NIEUW) */
+/* ===================== */
+
+form {
+    background: white;
+    width: 400px;
+    max-width: 90%;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.2s;
+}
+
+form input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74,144,226,0.3);
+}
+
+/* submit knop */
+form input[type="submit"],
+form button {
+    padding: 12px;
+    border: none;
+    background: #4a90e2;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+form input[type="submit"]:hover,
+form button:hover {
+    opacity: 0.9;
+}
+
+/* ===================== */
+/* TABEL STYLING (zoals jouw origineel) */
+/* ===================== */
+
+.table-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 700px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+th {
+    background: #4a90e2;
+    color: white;
+    padding: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+    background: #f2f6ff;
+    transition: 0.2s;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===================== */
+/* NAVBAR */
+/* ===================== */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.navbar li a:hover,
+.navbar li a.active {
+    background-color: #4a90e2;
+}
+
+/* ===================== */
+/* POPUPS (success/error) */
+/* ===================== */
+
+.popup {
+    width: 350px;
+    margin: 20px auto;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: bold;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 2px solid #28a745;
+}
+
+.popup.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 2px solid #dc3545;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

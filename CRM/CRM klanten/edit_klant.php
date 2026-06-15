@@ -52,6 +52,7 @@ if(isset($_POST['opslaan']))
 <html>
 <head>
     <title>Klant wijzigen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
 </head>
 <body>
 

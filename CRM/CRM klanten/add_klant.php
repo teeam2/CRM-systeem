@@ -40,6 +40,7 @@ if(isset($_POST['toevoegen']))
 <html>
 <head>
     <title>Klant toevoegen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
 </head>
 <body>
 

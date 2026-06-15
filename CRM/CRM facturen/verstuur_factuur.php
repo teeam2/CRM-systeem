@@ -108,6 +108,8 @@ if(isset($_POST['versturen'])){
 
 <h2>Factuur versturen</h2>
 
+<link rel="stylesheet" href="../toevoegen en wijzigen.css">
+
 <form method="POST">
 
 Email klant:<br>

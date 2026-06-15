@@ -38,6 +38,8 @@ if(isset($_POST['toevoegen']))
 
 <form method="post">
 
+<link rel="stylesheet" href="../toevoegen en wijzigen.css">
+
 Voornaam: <input type="text" name="voornaam"><br>
 Tussenvoegsel: <input type="text" name="tussenvoegsel"><br>
 Achternaam: <input type="text" name="achternaam"><br>

@@ -42,6 +42,8 @@ if(isset($_POST['opslaan']))
 
 <form method="post">
 
+<link rel="stylesheet" href="../toevoegen en wijzigen.css">
+
 Voornaam: <input type="text" name="voornaam" value="<?= $row['voornaam'] ?>"><br>
 Tussenvoegsel: <input type="text" name="tussenvoegsel" value="<?= $row['tussenvoegsel'] ?>"><br>
 Achternaam: <input type="text" name="achternaam" value="<?= $row['achternaam'] ?>"><br>

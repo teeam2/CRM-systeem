@@ -39,6 +39,8 @@ if(isset($_POST['opslaan']))
 
 <h2>Factuur wijzigen</h2>
 
+<link rel="stylesheet" href="../toevoegen en wijzigen.css">
+
 <form method="post">
 
 Klant ID:<br>
