@@ -60,6 +60,7 @@ tr:last-child td {
     margin: 0;
     padding: 0;
     list-style: none;
+    overflow: visible;
 }
 
 .navbar li a {
@@ -174,4 +175,57 @@ tr:last-child td {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.search-container form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Rond knopje */
+.info-button {
+    position: relative;
+    z-index: 1001;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #555;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Hover-tegel */
+.info-tooltip {
+    display: none;
+
+    position: absolute;
+    top: 40px;
+    right: 0;
+
+    width: 220px;
+    padding: 10px;
+
+    background-color: white;
+    color: black;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
+    z-index: 1000;
+}
+
+/* Toon tegel bij hover */
+.info-button:hover .info-tooltip {
+    display: block;
+}
+
+.info-tooltip ul {
+    margin: 5px 0 0 20px;
+    padding: 0;
 }

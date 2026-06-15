@@ -40,13 +40,23 @@ ini_set('display_errors', 1);
     <li><a class="active" href="#">Facturen</a></li>
     <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
 
-    <li class="search-container">
-        <form action="" method="get">
-            <input type="text"
-                   name="search"
-                   placeholder="Search user by name">
-        </form>
-    </li>
+<li class="search-container">
+    <form action="" method="get">
+        <input type="text" name="search" placeholder="Search user by name">
+
+        <div class="info-button">
+            ?
+            <div class="info-tooltip">
+                Je kunt zoeken op:
+                <ul>
+                    <li>factuur_id</li>
+                    <li>status</li>
+                    <li>factuurdatum</li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</li>
 </ul>
 
 <a href="add_factuur.php">Nieuwe factuur toevoegen</a>

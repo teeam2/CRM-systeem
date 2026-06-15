@@ -39,11 +39,23 @@ ini_set('display_errors', 1);
   <li><a href="CRM facturen.php">Facturen</a></li>
   <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
 
-  <li class="search-container">
-      <form action="" method="get">
-          <input type="text" name="search" placeholder="Search user by name">
-      </form>
-  </li>
+<li class="search-container">
+    <form action="" method="get">
+        <input type="text" name="search" placeholder="Search user by name">
+
+        <div class="info-button">
+            ?
+            <div class="info-tooltip">
+                Je kunt zoeken op:
+                <ul>
+                    <li>opdracht_id</li>
+                    <li>titel</li>
+                    <li>status</li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</li>
 </ul>
 
 <a href="add_opdracht.php">Nieuwe opdracht toevoegen</a>

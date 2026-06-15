@@ -80,13 +80,7 @@ if(isset($_POST['login'])){
     <li><a href="CRM facturen.php">Facturen</a></li>
     <li><a class="active" href="#">Inloggen</a></li>
 
-    <li class="search-container">
-        <form action="" method="get">
-            <input type="text"
-                   name="search"
-                   placeholder="Search user by name">
-        </form>
-    </li>
+
 </ul>
 
 <!-- POPUP MELDING -->
