@@ -1,4 +1,16 @@
 <?php
+session_start();
+$rol = $_SESSION['rol'];
+$medewerker_id_session = $_SESSION['medewerker_id'];
+
+if(!isset($_SESSION['voornaam'])){
+?>
+    <p>Je moet eerst inloggen</p>
+    <a href="../CRM inlog pagina.php">← Ga naar login</a>
+<?php
+    exit;
+}
+
 $conn = mysqli_connect("localhost", "root", "", "crm_systeem");
 
 if(isset($_POST['toevoegen']))
@@ -26,7 +38,19 @@ if(isset($_POST['toevoegen']))
 <form method="post">
 
 Medewerker ID:<br>
-<input type="text" name="medewerker_id"><br><br>
+
+<?php if($rol == 'admin'): ?>
+
+    <input type="text" name="medewerker_id"><br><br>
+
+<?php else: ?>
+
+    <input type="text" value="<?= $medewerker_id_session ?>" disabled>
+    <input type="hidden" name="medewerker_id" value="<?= $medewerker_id_session ?>">
+
+    <br><br>
+
+<?php endif; ?>
 
 Opdracht ID:<br>
 <input type="text" name="opdracht_id"><br><br>
