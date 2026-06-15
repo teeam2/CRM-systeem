@@ -149,11 +149,11 @@ ini_set('display_errors', 1);
         <div class="logo">Mijn CRM</div>
         <ul class="nav-links">
             <li><a class="active" href="#">Home</a></li>
-            <li><a href="CRM klanten.php">Klanten</a></li>
-            <li><a href="CRM medewerkers.php">Medewerkers</a></li>
-            <li><a href="CRM opdrachten.php">Opdrachten</a></li>
-            <li><a href="CRM werkzaamheden.php">Werkzaamheden</a></li>
-            <li><a href="CRM facturen.php">Facturen</a></li>
+            <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
+            <li><a href="CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
+            <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
+            <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
+            <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
             <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
         </ul>
     </nav>
@@ -190,32 +190,32 @@ ini_set('display_errors', 1);
         <div class="card">
             <h3>Klanten</h3>
             <p>Bekijk en beheer al je klantgegevens.</p>
-            <a href="CRM klanten.php" class="card-button">Klanten</a>
+            <a href="CRM klanten/CRM klanten.php" class="card-button">Klanten</a>
         </div>
 
         <div class="card">
             <h3>Projecten</h3>
             <p>Bekijk allen klanten.</p>
-            <a href="CRM medewerkers.php" class="card-button">Medewerkers</a>
+            <a href="CRM medewerkers/CRM medewerkers.php" class="card-button">Medewerkers</a>
 
         </div>
 
         <div class="card">
             <h3>Opdrachten</h3>
             <p>Bekijk allen opdrachten.</p>
-            <a href="CRM opdrachten.php" class="card-button">Opdrachten</a>
+            <a href="CRM opdrachten/CRM opdrachten.php" class="card-button">Opdrachten</a>
         </div>
 
         <div class="card">
             <h3>Werkzaamheden</h3>
             <p>Bekijk allen werkzaamheden.</p>
-            <a href="CRM werkzaamheden.php" class="card-button">Werkzaamheden</a>
+            <a href="CRM werkzaamheden/CRM werkzaamheden.php" class="card-button">Werkzaamheden</a>
         </div>
 
         <div class="card">
             <h3>Facturen</h3>
             <p>Bekijk allen facturen.</p>
-            <a href="CRM facturen.php" class="card-button">Facturen</a>
+            <a href="CRM facturen/CRM facturen.php" class="card-button">Facturen</a>
         </div>
 
                 <div class="card">
