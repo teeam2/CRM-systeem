@@ -49,8 +49,11 @@ $medewerker_id = $_SESSION['medewerker_id'];
                 </ul>
             </div>
         </div>
+
+        <!-- LOGOUT KNOP -->
+        <a href="../logout.php" class="logout-btn">Uitloggen</a>
     </form>
-  </li>
+</li>
 </ul>
 
 <a href="add_werkzaamheid.php">Nieuwe werkzaamheid toevoegen</a>
