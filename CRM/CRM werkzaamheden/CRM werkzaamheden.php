@@ -4,7 +4,7 @@ session_start();
 if(!isset($_SESSION['voornaam'])){
 ?>
     <p>Je moet eerst inloggen</p>
-    <a href="CRM inlog pagina.php">← Ga naar login</a>
+    <a href="../CRM inlog pagina.php">← Ga naar login</a>
 <?php
     exit;
 }
@@ -19,17 +19,17 @@ ini_set('display_errors', 1);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRM Werkzaamheden</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <ul class="navbar">
-  <li><a href="CRM home.php">Home</a></li>
-  <li><a href="CRM klanten.php">Klanten</a></li>
-  <li><a href="CRM medewerkers.php">Medewerkers</a></li>
-  <li><a href="CRM opdrachten.php">Opdrachten</a></li>
+  <li><a href="../CRM home.php">Home</a></li>
+  <li><a href="../CRM klanten/CRM klanten.php">Klanten</a></li>
+  <li><a href="../CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
+  <li><a href="../CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
   <li><a class="active" href="#">Werkzaamheden</a></li>
-  <li><a href="CRM facturen.php">Facturen</a></li>
-  <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
+  <li><a href="../CRM facturen/CRM facturen.php">Facturen</a></li>
+  <li><a href="../CRM inlog pagina.php">Inloggen</a></li>
 
 <li class="search-container">
     <form action="" method="get">

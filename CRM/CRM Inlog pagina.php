@@ -73,11 +73,11 @@ if(isset($_POST['login'])){
 
 <ul class="navbar">
     <li><a href="CRM home.php">Home</a></li>
-    <li><a href="CRM klanten.php">Klanten</a></li>
-    <li><a href="CRM medewerkers.php">Medewerkers</a></li>
-    <li><a href="CRM opdrachten.php">Opdrachten</a></li>
-    <li><a href="CRM werkzaamheden.php">Werkzaamheden</a></li>
-    <li><a href="CRM facturen.php">Facturen</a></li>
+    <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
+    <li><a href="CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
+    <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
+    <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
+    <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
     <li><a class="active" href="#">Inloggen</a></li>
 
 
