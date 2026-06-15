@@ -44,7 +44,11 @@ $pdf->Cell(50, 10, 'Totaalbedrag:');
 $pdf->Cell(100, 10, chr(128) . ' ' . $factuur['totaalbedrag'], 0, 1);
 
 $pdf->Cell(50, 10, 'Status:');
-$pdf->Cell(100, 10, chr(128) . ' ' . $factuur['status'], 0, 1);
+$pdf->Cell(100, 10, $factuur['status'], 0, 1);
 
+/* PDF OPSLAAN */
+$pdf->Output('F', 'pdf/factuur.pdf');
+
+/* PDF TONEN */
 $pdf->Output();
 ?>
