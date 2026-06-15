@@ -39,6 +39,7 @@ if(isset($_POST['login'])){
         if($wachtwoord == $user['wachtwoord']){
 
             session_start();
+            $_SESSION['medewerker_id'] = $user['medewerker_id'];
             $_SESSION['voornaam'] = $user['voornaam'];
             $_SESSION['rol'] = $user['rol'];
 
