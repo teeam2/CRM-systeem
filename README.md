@@ -20,3 +20,13 @@ Controleer eventueel config.php (database instellingen).
 
 Start de server en ga naar:
 http://localhost/CMR-systeem
+
+
+om in de data base te inloggen gebruik de volgende acount.
+email: olaf.kuijpers@gildedevops.nl
+wachtwoord: DevOlaf#21
+rol: medewerker
+|
+email: yvonne.bastiaans@gildedevops.nl
+wachtwoord: SalesYv#44
+rol: admin
