@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+$rol = $_SESSION['rol'];
+
 $conn = mysqli_connect("localhost", "root", "", "crm_systeem");
 
 $id = $_GET['id'];
@@ -29,7 +33,11 @@ if(isset($_POST['opslaan']))
 <form method="post">
 
 Medewerker ID:<br>
-<input type="text" name="medewerker_id" value="<?= $row['medewerker_id'] ?>"><br><br>
+<?php if($rol == 'admin'): ?>
+    <input type="text" name="medewerker_id" value="<?= $row['medewerker_id'] ?>"><br><br>
+<?php else: ?>
+    <input type="text" value="<?= $row['medewerker_id'] ?>" disabled><br><br>
+<?php endif; ?>
 
 Opdracht ID:<br>
 <input type="text" name="opdracht_id" value="<?= $row['opdracht_id'] ?>"><br><br>
