@@ -154,7 +154,12 @@ ini_set('display_errors', 1);
             <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
             <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
             <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
-            <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
+
+            <?php if(isset($_SESSION['voornaam'])): ?>
+                <li><a href="logout.php">Uitloggen</a></li>
+            <?php else: ?>
+                <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 

@@ -54,6 +54,8 @@ ini_set('display_errors', 1);
                 </ul>
             </div>
         </div>
+        <!-- LOGOUT KNOP -->
+        <a href="../logout.php" class="logout-btn">Uitloggen</a>
     </form>
 </li>
 </ul>
