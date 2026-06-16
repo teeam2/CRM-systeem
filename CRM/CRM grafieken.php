@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 if(!isset($_SESSION['voornaam'])){
 ?>
     <p>Je moet eerst inloggen</p>
@@ -20,77 +19,21 @@ if($_SESSION['rol'] != 'admin'){
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-?>
 
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM Klanten</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<ul class="navbar">
-  <li><a href="CRM home.php">Home</a></li>
-  <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
-  <li><a href="CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
-  <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
-  <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
-  <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
-  <li><a class="active" href="#">Grafieken</a></li>
+$db_server = "localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "crm_systeem";
 
-<li class="search-container">
-    <form action="" method="get">
-        <input type="text" name="search" placeholder="Search user by name">
+$conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 
-        <div class="info-button">
-            ?
-            <div class="info-tooltip">
-                Je kunt zoeken op:
-                <ul>
-                    <li>#</li>
-                    <li>#</li>
-                    <li>#</li>
-                    <li>#</li>
-                </ul>
-            </div>
-        </div>
-        <?php if(isset($_SESSION['voornaam'])): ?>
+if(!$conn){
+    die("Database connectie mislukt");
+}
 
-            <a href="../logout.php" class="logout-btn">
-                Uitloggen
-            </a>
-
-        <?php else: ?>
-
-            <a href="../CRM inlog pagina.php" class="logout-btn">
-                Inloggen
-            </a>
-
-        <?php endif; ?>
-    </form>
-</li>
-</ul>
-
-
-
-<?php 
-     $db_server = "localhost";
-     $db_user = "root";
-     $db_pass = "";
-     $db_name = "crm_systeem";
-     $conn = "";
-
-     $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
-
-    if($conn){
-      echo "";
-    }
-    else{
-      echo "you did not do it";
-    }
-
+/* =========================
+   OMZET PER JAAR
+========================= */
 $jaren = [];
 $omzet = [];
 
@@ -110,6 +53,9 @@ while($row = mysqli_fetch_assoc($result2)){
     $omzet[] = $row['totaal_omzet'];
 }
 
+/* =========================
+   UREN PER MAAND
+========================= */
 $maanden = [];
 $uren = [];
 
@@ -118,7 +64,7 @@ SELECT
     MONTHNAME(datum) as maand,
     SUM(aantal_uren) as totaal_uren
 FROM werkzaamheden
-GROUP BY MONTH(datum)
+GROUP BY MONTH(datum), MONTHNAME(datum)
 ORDER BY MONTH(datum)
 ";
 
@@ -129,88 +75,133 @@ while($row = mysqli_fetch_assoc($result)){
     $uren[] = $row['totaal_uren'];
 }
 
-        ?>
-</div>
+/* =========================
+   STATUSSEN OPDRACHTEN
+========================= */
+$statusLabels = [];
+$statusCounts = [];
+
+$sql3 = "
+SELECT
+    status,
+    COUNT(*) as aantal
+FROM opdrachten
+GROUP BY status
+ORDER BY status
+";
+
+$result3 = mysqli_query($conn, $sql3);
+
+while($row = mysqli_fetch_assoc($result3)){
+    $statusLabels[] = $row['status'];
+    $statusCounts[] = $row['aantal'];
+}
+?>
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM Grafieken</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAV -->
+<ul class="navbar">
+  <li><a href="CRM home.php">Home</a></li>
+  <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
+  <li><a href="CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
+  <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
+  <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
+  <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
+  <li><a class="active" href="#">Grafieken</a></li>
+</ul>
+
+<!-- GRAFIEKEN -->
 <div style="width: 900px; margin: 30px auto;">
     <canvas id="urenGrafiek"></canvas>
 </div>
+
 <div style="width: 900px; margin: 30px auto;">
     <canvas id="omzetGrafiek"></canvas>
 </div>
+
+<div style="width: 900px; margin: 30px auto;">
+    <canvas id="statusGrafiek"></canvas>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+
+/* =========================
+   PHP → JS DATA
+========================= */
 const jaren = <?php echo json_encode($jaren); ?>;
 const omzet = <?php echo json_encode($omzet); ?>;
 
 const maanden = <?php echo json_encode($maanden); ?>;
 const uren = <?php echo json_encode($uren); ?>;
 
-/* =======================
-   GRAFIEK 1: UREN
-======================= */
-const data = {
-    labels: maanden,
-    datasets: [{
-        label: 'Gewerkte uren',
-        data: uren,
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        fill: true,
-        tension: 0.3
-    }]
-};
+const statusLabels = <?php echo json_encode($statusLabels); ?>;
+const statusCounts = <?php echo json_encode($statusCounts); ?>;
 
-new Chart(
-    document.getElementById('urenGrafiek'),
-    {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'top' },
-                title: {
-                    display: true,
-                    text: 'Gewerkte uren per maand'
-                }
-            }
-        }
+/* =========================
+   1. UREN PER MAAND
+========================= */
+new Chart(document.getElementById('urenGrafiek'), {
+    type: 'line',
+    data: {
+        labels: maanden,
+        datasets: [{
+            label: 'Gewerkte uren',
+            data: uren,
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            fill: true,
+            tension: 0.3
+        }]
     }
-);
+});
 
-/* =======================
-   GRAFIEK 2: OMZET
-======================= */
-const data2 = {
-    labels: jaren,
-    datasets: [{
-        label: 'Omzet per jaar (€)',
-        data: omzet,
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        fill: true,
-        tension: 0.3
-    }]
-};
-
-new Chart(
-    document.getElementById('omzetGrafiek'),
-    {
-        type: 'line',
-        data: data2,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'top' },
-                title: {
-                    display: true,
-                    text: 'Omzet per jaar'
-                }
-            }
-        }
+/* =========================
+   2. OMZET PER JAAR
+========================= */
+new Chart(document.getElementById('omzetGrafiek'), {
+    type: 'line',
+    data: {
+        labels: jaren,
+        datasets: [{
+            label: 'Omzet per jaar (€)',
+            data: omzet,
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            fill: true,
+            tension: 0.3
+        }]
     }
-);
+});
+
+/* =========================
+   3. STATUSSEN (STAafdiagram)
+========================= */
+new Chart(document.getElementById('statusGrafiek'), {
+    type: 'bar',
+    data: {
+        labels: statusLabels,
+        datasets: [{
+            label: 'Aantal opdrachten',
+            data: statusCounts,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    }
+});
+
 </script>
+
 </body>
 </html>
