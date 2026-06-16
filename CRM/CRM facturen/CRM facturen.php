@@ -38,7 +38,6 @@ ini_set('display_errors', 1);
     <li><a href="../CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
     <li><a href="../CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
     <li><a class="active" href="#">Facturen</a></li>
-    <li><a href="../CRM inlog pagina.php">Inloggen</a></li>
 
 <li class="search-container">
     <form action="" method="get">
@@ -55,8 +54,19 @@ ini_set('display_errors', 1);
                 </ul>
             </div>
         </div>
-        <!-- LOGOUT KNOP -->
-        <a href="../logout.php" class="logout-btn">Uitloggen</a>
+        <?php if(isset($_SESSION['voornaam'])): ?>
+
+            <a href="../logout.php" class="logout-btn">
+                Uitloggen
+            </a>
+
+        <?php else: ?>
+
+            <a href="../CRM inlog pagina.php" class="logout-btn">
+                Inloggen
+            </a>
+
+        <?php endif; ?>
     </form>
 </li>
 </ul>
