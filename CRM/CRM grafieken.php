@@ -91,9 +91,68 @@ ini_set('display_errors', 1);
       echo "you did not do it";
     }
 
+$maanden = [];
+$uren = [];
 
+$sql = "
+SELECT
+    MONTHNAME(datum) as maand,
+    SUM(aantal_uren) as totaal_uren
+FROM werkzaamheden
+GROUP BY MONTH(datum)
+ORDER BY MONTH(datum)
+";
+
+$result = mysqli_query($conn, $sql);
+
+while($row = mysqli_fetch_assoc($result)){
+    $maanden[] = $row['maand'];
+    $uren[] = $row['totaal_uren'];
+}
 
         ?>
 </div>
+<div style="width: 900px; margin: 30px auto;">
+    <canvas id="urenGrafiek"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const maanden = <?php echo json_encode($maanden); ?>;
+const uren = <?php echo json_encode($uren); ?>;
+
+const data = {
+    labels: maanden,
+    datasets: [{
+        label: 'Gewerkte uren',
+        data: uren,
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        fill: true,
+        tension: 0.3
+    }]
+};
+
+const config = {
+    type: 'line',
+    data: data,
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top'
+            },
+            title: {
+                display: true,
+                text: 'Gewerkte uren per maand'
+            }
+        }
+    }
+};
+
+new Chart(
+    document.getElementById('urenGrafiek'),
+    config
+);
+</script>
 </body>
 </html>
