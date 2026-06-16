@@ -32,6 +32,28 @@ if(!$conn){
 }
 
 /* =========================
+   UREN PER MAAND
+========================= */
+$maanden = [];
+$uren = [];
+
+$sql1 = "
+SELECT
+    MONTHNAME(datum) as maand,
+    SUM(aantal_uren) as totaal_uren
+FROM werkzaamheden
+GROUP BY MONTH(datum), MONTHNAME(datum)
+ORDER BY MONTH(datum)
+";
+
+$result1 = mysqli_query($conn, $sql1);
+
+while($row = mysqli_fetch_assoc($result1)){
+    $maanden[] = $row['maand'];
+    $uren[] = $row['totaal_uren'];
+}
+
+/* =========================
    OMZET PER JAAR
 ========================= */
 $jaren = [];
@@ -54,29 +76,7 @@ while($row = mysqli_fetch_assoc($result2)){
 }
 
 /* =========================
-   UREN PER MAAND
-========================= */
-$maanden = [];
-$uren = [];
-
-$sql = "
-SELECT
-    MONTHNAME(datum) as maand,
-    SUM(aantal_uren) as totaal_uren
-FROM werkzaamheden
-GROUP BY MONTH(datum), MONTHNAME(datum)
-ORDER BY MONTH(datum)
-";
-
-$result = mysqli_query($conn, $sql);
-
-while($row = mysqli_fetch_assoc($result)){
-    $maanden[] = $row['maand'];
-    $uren[] = $row['totaal_uren'];
-}
-
-/* =========================
-   STATUSSEN OPDRACHTEN
+   STATUS OPDRACHTEN
 ========================= */
 $statusLabels = [];
 $statusCounts = [];
@@ -96,6 +96,28 @@ while($row = mysqli_fetch_assoc($result3)){
     $statusLabels[] = $row['status'];
     $statusCounts[] = $row['aantal'];
 }
+
+/* =========================
+   MEDEWERKERS PER FUNCTIE
+========================= */
+$functieLabels = [];
+$functieCounts = [];
+
+$sql4 = "
+SELECT
+    functie,
+    COUNT(*) as aantal
+FROM medewerkers
+GROUP BY functie
+ORDER BY functie
+";
+
+$result4 = mysqli_query($conn, $sql4);
+
+while($row = mysqli_fetch_assoc($result4)){
+    $functieLabels[] = $row['functie'];
+    $functieCounts[] = $row['aantal'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -108,7 +130,6 @@ while($row = mysqli_fetch_assoc($result3)){
 
 <body>
 
-<!-- NAV -->
 <ul class="navbar">
   <li><a href="CRM home.php">Home</a></li>
   <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
@@ -119,17 +140,29 @@ while($row = mysqli_fetch_assoc($result3)){
   <li><a class="active" href="#">Grafieken</a></li>
 </ul>
 
-<!-- GRAFIEKEN -->
-<div style="width: 900px; margin: 30px auto;">
-    <canvas id="urenGrafiek"></canvas>
+<!-- LAYOUT: 2 naast elkaar -->
+<div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:30px auto; width:95%;">
+
+    <div style="width:45%;">
+        <canvas id="urenGrafiek"></canvas>
+    </div>
+
+    <div style="width:45%;">
+        <canvas id="omzetGrafiek"></canvas>
+    </div>
+
 </div>
 
-<div style="width: 900px; margin: 30px auto;">
-    <canvas id="omzetGrafiek"></canvas>
-</div>
+<div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin:30px auto; width:95%;">
 
-<div style="width: 900px; margin: 30px auto;">
-    <canvas id="statusGrafiek"></canvas>
+    <div style="width:45%;">
+        <canvas id="statusGrafiek"></canvas>
+    </div>
+
+    <div style="width:45%;">
+        <canvas id="functieGrafiek"></canvas>
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -139,14 +172,17 @@ while($row = mysqli_fetch_assoc($result3)){
 /* =========================
    PHP → JS DATA
 ========================= */
-const jaren = <?php echo json_encode($jaren); ?>;
-const omzet = <?php echo json_encode($omzet); ?>;
+const maanden = <?php echo json_encode($maanden ?? []); ?>;
+const uren = <?php echo json_encode($uren ?? []); ?>;
 
-const maanden = <?php echo json_encode($maanden); ?>;
-const uren = <?php echo json_encode($uren); ?>;
+const jaren = <?php echo json_encode($jaren ?? []); ?>;
+const omzet = <?php echo json_encode($omzet ?? []); ?>;
 
-const statusLabels = <?php echo json_encode($statusLabels); ?>;
-const statusCounts = <?php echo json_encode($statusCounts); ?>;
+const statusLabels = <?php echo json_encode($statusLabels ?? []); ?>;
+const statusCounts = <?php echo json_encode($statusCounts ?? []); ?>;
+
+const functieLabels = <?php echo json_encode($functieLabels ?? []); ?>;
+const functieCounts = <?php echo json_encode($functieCounts ?? []); ?>;
 
 /* =========================
    1. UREN PER MAAND
@@ -185,7 +221,7 @@ new Chart(document.getElementById('omzetGrafiek'), {
 });
 
 /* =========================
-   3. STATUSSEN (STAafdiagram)
+   3. STATUS OPDRACHTEN
 ========================= */
 new Chart(document.getElementById('statusGrafiek'), {
     type: 'bar',
@@ -195,7 +231,22 @@ new Chart(document.getElementById('statusGrafiek'), {
             label: 'Aantal opdrachten',
             data: statusCounts,
             backgroundColor: 'rgba(54, 162, 235, 0.6)',
-            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    }
+});
+
+/* =========================
+   4. MEDEWERKERS FUNCTIE
+========================= */
+new Chart(document.getElementById('functieGrafiek'), {
+    type: 'bar',
+    data: {
+        labels: functieLabels,
+        datasets: [{
+            label: 'Medewerkers per functie',
+            data: functieCounts,
+            backgroundColor: 'rgba(153, 102, 255, 0.6)',
             borderWidth: 1
         }]
     }
