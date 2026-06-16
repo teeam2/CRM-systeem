@@ -138,6 +138,25 @@ while($row = mysqli_fetch_assoc($result4)){
   <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
   <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
   <li><a class="active" href="#">Grafieken</a></li>
+
+  <li class="search-container">
+    <form action="" method="get">
+
+        <?php if(isset($_SESSION['voornaam'])): ?>
+
+            <a href="logout.php" class="logout-btn">
+                Uitloggen
+            </a>
+
+        <?php else: ?>
+
+            <a href="CRM inlog pagina.php" class="logout-btn">
+                Inloggen
+            </a>
+
+        <?php endif; ?>
+    </form>
+</li>
 </ul>
 
 <!-- LAYOUT: 2 naast elkaar -->
