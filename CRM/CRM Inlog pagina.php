@@ -38,7 +38,6 @@ if(isset($_POST['login'])){
 
         if($wachtwoord == $user['wachtwoord']){
 
-            session_start();
             $_SESSION['medewerker_id'] = $user['medewerker_id'];
             $_SESSION['voornaam'] = $user['voornaam'];
             $_SESSION['rol'] = $user['rol'];
@@ -79,7 +78,19 @@ if(isset($_POST['login'])){
     <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
     <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
     <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
-    <li><a class="active" href="#">Inloggen</a></li>    
+
+    <!-- knop rechts -->
+    <li class="nav-right">
+        <?php if(isset($_SESSION['voornaam'])): ?>
+            <a href="logout.php" class="logout-btn">
+                Uitloggen
+            </a>
+        <?php else: ?>
+            <a class="active logout-btn" href="#">
+                Inloggen
+            </a>
+        <?php endif; ?>
+    </li>
 </ul>
 
 <!-- POPUP MELDING -->
