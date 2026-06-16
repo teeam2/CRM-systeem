@@ -25,7 +25,6 @@ ini_set('display_errors', 1);
         .navbar {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             background-color: rgb(0, 0, 0);
             padding: 15px 30px;
             border-bottom: 1px solid #ddd;
@@ -61,27 +60,36 @@ ini_set('display_errors', 1);
             background-color: #4a90e2;
         }
 
-        .logo {
-            font-size: 22px;
+        /* Mijn CRM tekst links */
+        .nav-title {
+            color: white;
+            font-size: 15px;
             font-weight: bold;
-            color: rgb(255, 255, 255);
+            padding: 14px 20px;
+            user-select: none;
         }
 
-        .nav-links {
+        /* knop helemaal rechts */
+        .nav-right {
+            margin-left: auto;
+            padding-right: 20px;
             list-style: none;
-            display: flex;
-            gap: 0px;
-            padding: 0;
-            margin: 0;
-            color: rgb(255, 255, 255);
         }
 
-        .nav-links a {
+        /* login/logout knop styling */
+        .logout-btn {
+            background-color: #4a90e2;
+            color: white !important;
+            padding: 10px 16px !important;
+            border-radius: 20px;
             text-decoration: none;
-            color: #ffffff;
-            font-weight: 500;
+            transition: 0.3s;
         }
 
+        /* hover effect */
+        .logout-btn:hover {
+            background-color: #3576c9 !important;
+        }
 
         /* Hero sectie */
         .hero {
@@ -144,25 +152,36 @@ ini_set('display_errors', 1);
 </head>
 <body>
 
-    <!-- Navigatie -->
-    <nav class="navbar">
-        <div class="logo">Mijn CRM</div>
-        <ul class="nav-links">
-            <li><a class="active" href="#">Home</a></li>
-            <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
-            <li><a href="CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
-            <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
-            <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
-            <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
-            <li><a href="CRM grafieken.php">Grafieken</a></li>
+<!-- Navigatie -->
+<ul class="navbar">
 
-            <?php if(isset($_SESSION['voornaam'])): ?>
-                <li><a href="logout.php">Uitloggen</a></li>
-            <?php else: ?>
-                <li><a href="CRM Inlog pagina.php">Inloggen</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
+    <!-- Titel links -->
+    <li class="nav-title">Mijn CRM</li>
+
+    <li><a class="active" href="#">Home</a></li>
+    <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
+    <li><a href="CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
+    <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
+    <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
+    <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
+    <li><a href="CRM grafieken.php">Grafieken</a></li>
+
+    <!-- knop rechts -->
+    <li class="nav-right">
+
+        <?php if(isset($_SESSION['voornaam'])): ?>
+            <a href="logout.php" class="logout-btn">
+                Uitloggen
+            </a>
+
+        <?php else: ?>
+            <a href="CRM Inlog pagina.php" class="logout-btn">
+                Inloggen
+            </a>
+        <?php endif; ?>
+
+    </li>
+</ul>
 
     <!-- Hero sectie -->
     <header class="hero">

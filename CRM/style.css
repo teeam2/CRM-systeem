@@ -82,6 +82,15 @@ tr:last-child td {
     background-color: #4a90e2;
 }
 
+/* Mijn CRM tekst links in navbar */
+.nav-title {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 14px 20px;
+    user-select: none;
+}
+
 .search-container {
     margin-left: auto; 
     padding-right: 20px;
