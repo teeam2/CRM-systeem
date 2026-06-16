@@ -62,7 +62,7 @@ ini_set('display_errors', 1);
 </li>
 </ul>
 
-<a href="add_klant.php">Nieuwe klant toevoegen</a>
+<a class="fancy-button" href="add_klant.php">Nieuwe klant toevoegen</a>
 
 
 <?php 

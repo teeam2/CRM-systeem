@@ -63,7 +63,7 @@ ini_set('display_errors', 1);
 </li>
 </ul>
 
-<a href="add_medewerker.php">Nieuwe medewerker toevoegen</a>
+<a class="fancy-button" href="add_medewerker.php">Nieuwe medewerker toevoegen</a>
 
 
 <?php 

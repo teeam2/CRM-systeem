@@ -56,7 +56,7 @@ $medewerker_id = $_SESSION['medewerker_id'];
 </li>
 </ul>
 
-<a href="add_werkzaamheid.php">Nieuwe werkzaamheid toevoegen</a>
+<a class="fancy-button" href="add_werkzaamheid.php">Nieuwe werkzaamheid toevoegen</a>
 
 <?php 
 $db_server = "localhost";

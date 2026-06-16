@@ -61,7 +61,7 @@ ini_set('display_errors', 1);
 </li>
 </ul>
 
-<a href="add_factuur.php">Nieuwe factuur toevoegen</a>
+<a class="fancy-button" href="add_factuur.php">Nieuwe factuur toevoegen</a>
 
 <?php
 
