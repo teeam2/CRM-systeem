@@ -91,6 +91,25 @@ ini_set('display_errors', 1);
       echo "you did not do it";
     }
 
+$jaren = [];
+$omzet = [];
+
+$sql2 = "
+SELECT
+    YEAR(startdatum) as jaar,
+    SUM(uurprijs) as totaal_omzet
+FROM opdrachten
+GROUP BY YEAR(startdatum)
+ORDER BY YEAR(startdatum)
+";
+
+$result2 = mysqli_query($conn, $sql2);
+
+while($row = mysqli_fetch_assoc($result2)){
+    $jaren[] = $row['jaar'];
+    $omzet[] = $row['totaal_omzet'];
+}
+
 $maanden = [];
 $uren = [];
 
@@ -115,11 +134,21 @@ while($row = mysqli_fetch_assoc($result)){
 <div style="width: 900px; margin: 30px auto;">
     <canvas id="urenGrafiek"></canvas>
 </div>
+<div style="width: 900px; margin: 30px auto;">
+    <canvas id="omzetGrafiek"></canvas>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
+const jaren = <?php echo json_encode($jaren); ?>;
+const omzet = <?php echo json_encode($omzet); ?>;
+
 const maanden = <?php echo json_encode($maanden); ?>;
 const uren = <?php echo json_encode($uren); ?>;
 
+/* =======================
+   GRAFIEK 1: UREN
+======================= */
 const data = {
     labels: maanden,
     datasets: [{
@@ -132,26 +161,55 @@ const data = {
     }]
 };
 
-const config = {
-    type: 'line',
-    data: data,
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top'
-            },
-            title: {
-                display: true,
-                text: 'Gewerkte uren per maand'
+new Chart(
+    document.getElementById('urenGrafiek'),
+    {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: {
+                    display: true,
+                    text: 'Gewerkte uren per maand'
+                }
             }
         }
     }
+);
+
+/* =======================
+   GRAFIEK 2: OMZET
+======================= */
+const data2 = {
+    labels: jaren,
+    datasets: [{
+        label: 'Omzet per jaar (€)',
+        data: omzet,
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        fill: true,
+        tension: 0.3
+    }]
 };
 
 new Chart(
-    document.getElementById('urenGrafiek'),
-    config
+    document.getElementById('omzetGrafiek'),
+    {
+        type: 'line',
+        data: data2,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: {
+                    display: true,
+                    text: 'Omzet per jaar'
+                }
+            }
+        }
+    }
 );
 </script>
 </body>
