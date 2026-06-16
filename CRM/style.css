@@ -277,3 +277,25 @@ tr:last-child td {
   box-shadow: #3c4fe0 0 3px 7px inset;
   transform: translateY(2px);
 }
+
+/* knop rechts in navbar */
+.nav-right {
+    margin-left: auto;
+    padding-right: 20px;
+    list-style: none;
+}
+
+/* login/logout knop */
+.logout-btn {
+    background-color: #4a90e2;
+    color: white !important;
+    padding: 10px 16px !important;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* hover effect */
+.logout-btn:hover {
+    background-color: #3576c9 !important;
+}
