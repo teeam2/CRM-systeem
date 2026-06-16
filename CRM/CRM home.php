@@ -154,6 +154,7 @@ ini_set('display_errors', 1);
             <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
             <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
             <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
+            <li><a href="CRM grafieken.php">Grafieken</a></li>
 
             <?php if(isset($_SESSION['voornaam'])): ?>
                 <li><a href="logout.php">Uitloggen</a></li>
@@ -194,33 +195,39 @@ ini_set('display_errors', 1);
     <section class="cards">
         <div class="card">
             <h3>Klanten</h3>
-            <p>Bekijk en beheer al je klantgegevens.</p>
+            <p>Bekijk al je klanten.</p>
             <a href="CRM klanten/CRM klanten.php" class="card-button">Klanten</a>
         </div>
 
         <div class="card">
             <h3>Projecten</h3>
-            <p>Bekijk allen klanten.</p>
+            <p>Bekijk al je medewerkers.</p>
             <a href="CRM medewerkers/CRM medewerkers.php" class="card-button">Medewerkers</a>
 
         </div>
 
         <div class="card">
             <h3>Opdrachten</h3>
-            <p>Bekijk allen opdrachten.</p>
+            <p>Bekijk al je opdrachten.</p>
             <a href="CRM opdrachten/CRM opdrachten.php" class="card-button">Opdrachten</a>
         </div>
 
         <div class="card">
             <h3>Werkzaamheden</h3>
-            <p>Bekijk allen werkzaamheden.</p>
+            <p>Bekijk al je werkzaamheden.</p>
             <a href="CRM werkzaamheden/CRM werkzaamheden.php" class="card-button">Werkzaamheden</a>
         </div>
 
         <div class="card">
             <h3>Facturen</h3>
-            <p>Bekijk allen facturen.</p>
+            <p>Bekijk al je facturen.</p>
             <a href="CRM facturen/CRM facturen.php" class="card-button">Facturen</a>
+        </div>
+
+        <div class="card">
+            <h3>Grafieken</h3>
+            <p>Bekijk al je Grafieken.</p>
+            <a href="CRM grafieken.php" class="card-button">Grafieken</a>
         </div>
 
                 <div class="card">

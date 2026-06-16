@@ -37,6 +37,7 @@ ini_set('display_errors', 1);
   <li><a href="../CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
   <li><a href="../CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
   <li><a href="../CRM facturen/CRM facturen.php">Facturen</a></li>
+  <li><a href="../CRM grafieken.php">Grafieken</a></li>
 
 <li class="search-container">
     <form action="" method="get">
