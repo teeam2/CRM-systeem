@@ -32,6 +32,7 @@ ini_set('display_errors', 1);
 <body>
 
 <ul class="navbar">
+    <li class="nav-title">Mijn CRM</li>
     <li><a href="../CRM home.php">Home</a></li>
     <li><a href="../CRM klanten/CRM klanten.php">Klanten</a></li>
     <li><a href="../CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>

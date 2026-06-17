@@ -131,7 +131,8 @@ while($row = mysqli_fetch_assoc($result4)){
 <body>
 
 <ul class="navbar">
-  <li><a href="CRM home.php">Home</a></li>
+    <li class="nav-title">Mijn CRM</li>
+    <li><a href="CRM home.php">Home</a></li>
   <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
   <li><a href="CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
   <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>

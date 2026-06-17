@@ -63,13 +63,20 @@ tr:last-child td {
     overflow: visible;
 }
 
+.navbar li {
+    display: flex;
+    align-items: center;
+}
+
 .navbar li a {
-    display: block;
+    display: flex;
+    align-items: center;
     color: white;
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
     transition: 0.3s;
+    font-size: 15px;
 }
 
 /* hover effect */
@@ -82,13 +89,15 @@ tr:last-child td {
     background-color: #4a90e2;
 }
 
-/* Mijn CRM tekst links in navbar */
-.nav-title {
+ /* Mijn CRM tekst links */
+ .nav-title {
     color: white;
-    font-size: 22px;
+    font-size: 15px;
     font-weight: bold;
     padding: 14px 20px;
     user-select: none;
+    display: flex;
+    align-items: center;
 }
 
 .search-container {
