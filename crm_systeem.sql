@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 09, 2026 at 10:22 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: 127.0.0.1:3306
+-- Gegenereerd op: 17 jun 2026 om 08:11
+-- Serverversie: 8.4.7
+-- PHP-versie: 8.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,21 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `facturen`
+-- Tabelstructuur voor tabel `facturen`
 --
 
-CREATE TABLE `facturen` (
-  `factuur_id` int(10) UNSIGNED NOT NULL,
-  `klant_id` int(10) UNSIGNED NOT NULL,
-  `opdracht_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `facturen`;
+CREATE TABLE IF NOT EXISTS `facturen` (
+  `factuur_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `klant_id` int UNSIGNED NOT NULL,
+  `opdracht_id` int UNSIGNED NOT NULL,
   `factuurdatum` date NOT NULL,
   `totaalbedrag` decimal(10,2) NOT NULL,
-  `status` enum('open','verzonden','betaald','te_laat') DEFAULT 'open',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status` enum('open','verzonden','betaald','te_laat') COLLATE utf8mb4_general_ci DEFAULT 'open',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`factuur_id`),
+  KEY `klant_id` (`klant_id`),
+  KEY `opdracht_id` (`opdracht_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `facturen`
+-- Gegevens worden geëxporteerd voor tabel `facturen`
 --
 
 INSERT INTO `facturen` (`factuur_id`, `klant_id`, `opdracht_id`, `factuurdatum`, `totaalbedrag`, `status`, `created_at`) VALUES
@@ -96,22 +100,24 @@ INSERT INTO `facturen` (`factuur_id`, `klant_id`, `opdracht_id`, `factuurdatum`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `klanten`
+-- Tabelstructuur voor tabel `klanten`
 --
 
-CREATE TABLE `klanten` (
-  `klanten_ID` int(10) UNSIGNED NOT NULL,
-  `Voornaam` varchar(100) DEFAULT NULL,
-  `Tussenvoegsel` varchar(50) DEFAULT NULL,
-  `Achternaam` varchar(100) DEFAULT NULL,
-  `bedrijfsnaam` varchar(200) DEFAULT NULL,
-  `functie` varchar(100) DEFAULT NULL,
-  `email` text NOT NULL,
-  `PhoneNumber` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS `klanten`;
+CREATE TABLE IF NOT EXISTS `klanten` (
+  `klanten_ID` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Voornaam` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Tussenvoegsel` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Achternaam` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bedrijfsnaam` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `functie` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PhoneNumber` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`klanten_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `klanten`
+-- Gegevens worden geëxporteerd voor tabel `klanten`
 --
 
 INSERT INTO `klanten` (`klanten_ID`, `Voornaam`, `Tussenvoegsel`, `Achternaam`, `bedrijfsnaam`, `functie`, `email`, `PhoneNumber`) VALUES
@@ -169,28 +175,31 @@ INSERT INTO `klanten` (`klanten_ID`, `Voornaam`, `Tussenvoegsel`, `Achternaam`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `medewerkers`
+-- Tabelstructuur voor tabel `medewerkers`
 --
 
-CREATE TABLE `medewerkers` (
-  `medewerker_id` int(10) UNSIGNED NOT NULL,
-  `voornaam` varchar(50) NOT NULL,
-  `tussenvoegsel` varchar(20) DEFAULT NULL,
-  `achternaam` varchar(50) NOT NULL,
-  `functie` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `wachtwoord` varchar(255) NOT NULL,
-  `telefoonnummer` varchar(20) DEFAULT NULL,
-  `rol` enum('medewerker','admin') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+DROP TABLE IF EXISTS `medewerkers`;
+CREATE TABLE IF NOT EXISTS `medewerkers` (
+  `medewerker_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `voornaam` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `tussenvoegsel` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `achternaam` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `functie` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `wachtwoord` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `telefoonnummer` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `rol` enum('medewerker','admin') COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`medewerker_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `medewerkers`
+-- Gegevens worden geëxporteerd voor tabel `medewerkers`
 --
 
 INSERT INTO `medewerkers` (`medewerker_id`, `voornaam`, `tussenvoegsel`, `achternaam`, `functie`, `email`, `wachtwoord`, `telefoonnummer`, `rol`, `created_at`) VALUES
-(1, 'Olaf', NULL, 'Kuijpers', 'Medewerker', 'olaf.kuijpers@gildedevops.nl', 'DevOlaf#21', '0621000001', 'medewerker', '2026-06-08 09:46:56'),
+(1, 'Olaf', '', 'Kuijpers', 'Medewerker', 'olaf.kuijpers@gildedevops.nl', 'DevOlaf#21', '0621000001', 'medewerker', '2026-06-08 09:46:56'),
 (2, 'Yvonne', NULL, 'Bastiaans', 'Verkoopmedewerker', 'yvonne.bastiaans@gildedevops.nl', 'SalesYv#44', '0621000002', 'admin', '2026-06-08 09:46:56'),
 (3, 'Gerard', 'van', 'Heumen', 'Afdelingshoofd', 'gerard.vanheumen@gildedevops.nl', 'AdminGer#88', '0621000003', 'admin', '2026-06-08 09:46:56'),
 (4, 'Kim', NULL, 'Otten', 'Medewerker', 'kim.otten@gildedevops.nl', 'KimDev#17', '0621000004', 'medewerker', '2026-06-08 09:46:56'),
@@ -239,246 +248,180 @@ INSERT INTO `medewerkers` (`medewerker_id`, `voornaam`, `tussenvoegsel`, `achter
 (47, 'Jeroen', NULL, 'Bisschops', 'Medewerker', 'jeroen.bisschops@gildedevops.nl', 'Jeroen#95', '0621000047', 'medewerker', '2026-06-08 09:46:56'),
 (48, 'Vivian', NULL, 'Mols', 'Verkoopmedewerker', 'vivian.mols@gildedevops.nl', 'VivSales#31', '0621000048', 'admin', '2026-06-08 09:46:56'),
 (49, 'Mark', NULL, 'Thijssen', 'Medewerker', 'mark.thijssen@gildedevops.nl', 'MarkDev#61', '0621000049', 'medewerker', '2026-06-08 09:46:56'),
-(50, 'Ilona', NULL, 'Hermsen', 'Medewerker', 'ilona.hermsen@gildedevops.nl', 'Ilona#73', '0621000050', 'medewerker', '2026-06-08 09:46:56');
+(50, 'Ilona', NULL, 'Hermsen', 'Medewerker', 'ilona.hermsen@gildedevops.nl', 'Ilona#73', '0621000050', 'medewerker', '2026-06-08 09:46:56'),
+(53, 'finn', '', 'bloemers', 'baas', 'Finn.Bloemers@student.gildeopleidingen.nl', 'mooi wachtwoord', '0612345678', 'admin', '2026-06-11 12:09:27');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opdrachten`
+-- Tabelstructuur voor tabel `opdrachten`
 --
 
-CREATE TABLE `opdrachten` (
-  `opdracht_id` int(10) UNSIGNED NOT NULL,
-  `klant_id` int(10) UNSIGNED NOT NULL,
-  `titel` varchar(100) NOT NULL,
-  `beschrijving` text DEFAULT NULL,
-  `status` enum('actief','afgerond','gefactureerd','betaald') DEFAULT 'actief',
+DROP TABLE IF EXISTS `opdrachten`;
+CREATE TABLE IF NOT EXISTS `opdrachten` (
+  `opdracht_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `klant_id` int UNSIGNED NOT NULL,
+  `titel` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `beschrijving` text COLLATE utf8mb4_general_ci,
+  `status` enum('actief','afgerond','gefactureerd','betaald') COLLATE utf8mb4_general_ci DEFAULT 'actief',
   `uurprijs` decimal(10,2) NOT NULL,
   `startdatum` date DEFAULT NULL,
-  `einddatum` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `einddatum` date DEFAULT NULL,
+  PRIMARY KEY (`opdracht_id`),
+  KEY `klant_id` (`klant_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `opdrachten`
+-- Gegevens worden geëxporteerd voor tabel `opdrachten`
 --
 
 INSERT INTO `opdrachten` (`opdracht_id`, `klant_id`, `titel`, `beschrijving`, `status`, `uurprijs`, `startdatum`, `einddatum`) VALUES
-(1, 1, 'Website Redesign', 'Complete vernieuwing van bedrijfswebsite', 'actief', 85.00, '2026-01-10', '2026-04-15'),
-(2, 2, 'CRM Implementatie', 'Nieuw CRM systeem implementeren', 'afgerond', 95.00, '2026-02-01', '2026-05-20'),
-(3, 3, 'Mobile App Ontwikkeling', 'Bouwen van mobiele applicatie', 'actief', 105.00, '2026-03-12', '2026-08-01'),
-(4, 4, 'Cloud Migratie', 'Migratie naar cloud omgeving', 'betaald', 120.00, '2025-11-01', '2026-02-01'),
-(5, 5, 'Security Audit', 'Controle van beveiligingsmaatregelen', 'gefactureerd', 130.00, '2026-01-05', '2026-03-10'),
-(6, 6, 'API Koppeling', 'Externe API integratie realiseren', 'actief', 92.50, '2026-04-01', '2026-06-15'),
-(7, 7, 'Dashboard Ontwikkeling', 'Management dashboard bouwen', 'actief', 98.00, '2026-02-14', '2026-05-30'),
-(8, 8, 'Database Optimalisatie', 'Performance verbeteren database', 'afgerond', 110.00, '2025-10-10', '2025-12-20'),
-(9, 9, 'Server Onderhoud', 'Onderhoud productieservers', 'betaald', 88.00, '2026-01-01', '2026-01-31'),
-(10, 10, 'Netwerk Upgrade', 'Moderniseren bedrijfsnetwerk', 'actief', 102.00, '2026-03-01', '2026-06-01'),
-(11, 11, 'Webshop Ontwikkeling', 'Nieuwe webshop realiseren', 'actief', 115.00, '2026-01-20', '2026-07-01'),
-(12, 12, 'Data Analyse', 'Analyse klantdata en rapportage', 'afgerond', 97.50, '2025-12-01', '2026-02-28'),
-(13, 13, 'SEO Optimalisatie', 'Verbeteren zoekmachine resultaten', 'gefactureerd', 80.00, '2026-02-10', '2026-04-01'),
-(14, 14, 'AI Chatbot Integratie', 'Slimme chatbot implementeren', 'actief', 125.00, '2026-03-15', '2026-07-15'),
-(15, 15, 'VPN Configuratie', 'Veilige VPN toegang instellen', 'betaald', 89.00, '2025-09-01', '2025-10-01'),
-(16, 16, 'Facturatie Systeem', 'Automatische facturatie bouwen', 'actief', 108.00, '2026-02-01', '2026-05-15'),
-(17, 17, 'Backup Oplossing', 'Nieuwe backup infrastructuur', 'afgerond', 93.00, '2025-08-01', '2025-11-01'),
-(18, 18, 'Microsoft 365 Migratie', 'Migratie naar Microsoft 365', 'betaald', 99.00, '2025-07-15', '2025-10-15'),
-(19, 19, 'HR Portaal', 'Interne HR applicatie ontwikkelen', 'actief', 112.00, '2026-01-11', '2026-06-11'),
-(20, 20, 'Performance Testing', 'Load testing uitvoeren', 'gefactureerd', 91.00, '2026-03-05', '2026-04-20'),
-(21, 21, 'Klantportaal', 'Online klantomgeving ontwikkelen', 'actief', 118.00, '2026-02-18', '2026-08-01'),
-(22, 22, 'Wifi Vernieuwing', 'Nieuwe zakelijke wifi omgeving', 'betaald', 86.00, '2025-10-01', '2025-11-20'),
-(23, 23, 'Ticket Systeem', 'Helpdesk ticketsysteem bouwen', 'actief', 94.00, '2026-01-22', '2026-04-22'),
-(24, 24, 'DevOps Automatisering', 'CI/CD pipelines implementeren', 'actief', 135.00, '2026-03-01', '2026-09-01'),
-(25, 25, 'Pentest Uitvoering', 'Penetratietest uitvoeren', 'afgerond', 140.00, '2025-12-01', '2026-01-15'),
-(26, 26, 'Hosting Migratie', 'Migratie webhosting omgeving', 'betaald', 84.00, '2025-06-01', '2025-08-01'),
-(27, 27, 'BI Rapportages', 'Business intelligence dashboards', 'actief', 119.00, '2026-02-01', '2026-06-30'),
-(28, 28, 'App Onderhoud', 'Onderhoud bestaande mobiele app', 'gefactureerd', 90.00, '2026-01-01', '2026-03-31'),
-(29, 29, 'SSL Implementatie', 'SSL certificaten configureren', 'afgerond', 79.00, '2025-09-10', '2025-09-25'),
-(30, 30, 'Frontend Redesign', 'Nieuwe frontend interface bouwen', 'actief', 101.00, '2026-04-01', '2026-08-15'),
-(31, 31, 'E-mail Migratie', 'Zakelijke e-mail migreren', 'betaald', 87.00, '2025-05-01', '2025-06-15'),
-(32, 32, 'Monitoring Systeem', 'Server monitoring implementeren', 'actief', 96.00, '2026-01-15', '2026-05-01'),
-(33, 33, 'Container Platform', 'Docker omgeving bouwen', 'actief', 128.00, '2026-03-20', '2026-09-20'),
-(34, 34, 'Identity Management', 'Gebruikersbeheer verbeteren', 'afgerond', 109.00, '2025-10-05', '2025-12-30'),
-(35, 35, 'Systeem Integratie', 'Integratie bestaande systemen', 'gefactureerd', 117.00, '2026-02-10', '2026-05-25'),
-(36, 36, 'Cloud Beveiliging', 'Cloud security verbeteren', 'actief', 132.00, '2026-01-12', '2026-07-12'),
-(37, 37, 'Data Warehouse', 'Datawarehouse opzetten', 'actief', 145.00, '2026-03-01', '2026-10-01'),
-(38, 38, 'Kassa Systeem', 'Digitaal kassasysteem ontwikkelen', 'betaald', 89.50, '2025-08-15', '2025-11-15'),
-(39, 39, 'Printer Netwerk', 'Zakelijk printnetwerk configureren', 'afgerond', 76.00, '2025-07-01', '2025-07-20'),
-(40, 40, 'Remote Werkplek', 'Thuiswerk infrastructuur', 'gefactureerd', 104.00, '2026-01-05', '2026-04-10'),
-(41, 41, 'E-learning Platform', 'Online leeromgeving ontwikkelen', 'actief', 122.00, '2026-02-01', '2026-08-20'),
-(42, 42, 'Firewall Configuratie', 'Netwerk firewall instellen', 'betaald', 95.50, '2025-09-01', '2025-10-10'),
-(43, 43, 'ERP Koppeling', 'ERP software integratie', 'actief', 126.00, '2026-03-15', '2026-09-15'),
-(44, 44, 'Chat Applicatie', 'Interne chatapplicatie bouwen', 'afgerond', 93.50, '2025-11-01', '2026-01-20'),
-(45, 45, 'Digitale Handtekening', 'Ondertekening systeem bouwen', 'gefactureerd', 88.50, '2026-02-01', '2026-04-30'),
-(46, 46, 'Linux Migratie', 'Migratie naar Linux servers', 'actief', 138.00, '2026-04-01', '2026-10-01'),
-(47, 47, 'Machine Learning Analyse', 'ML modellen ontwikkelen', 'actief', 150.00, '2026-03-10', '2026-11-01'),
-(48, 48, 'Servicedesk Tool', 'Nieuwe servicedesk software', 'betaald', 92.00, '2025-10-10', '2025-12-15'),
-(49, 49, 'Document Management', 'Documentbeheer systeem bouwen', 'afgerond', 111.00, '2025-12-01', '2026-03-01'),
-(50, 50, 'Compliance Controle', 'AVG compliance controle uitvoeren', 'gefactureerd', 124.00, '2026-01-25', '2026-05-01');
+(1, 1, 'Website Redesign', 'Complete vernieuwing van bedrijfswebsite', 'actief', 85.00, '2023-01-11', '2023-03-12'),
+(2, 2, 'CRM Implementatie', 'Nieuw CRM systeem implementeren', 'afgerond', 95.00, '2023-01-21', '2023-03-22'),
+(3, 3, 'Mobile App Ontwikkeling', 'Bouwen van mobiele applicatie', 'actief', 105.00, '2023-01-31', '2023-04-01'),
+(4, 4, 'Cloud Migratie', 'Migratie naar cloud omgeving', 'betaald', 120.00, '2023-02-10', '2023-04-11'),
+(5, 5, 'Security Audit', 'Controle van beveiligingsmaatregelen', 'gefactureerd', 130.00, '2023-02-20', '2023-04-21'),
+(6, 6, 'API Koppeling', 'Externe API integratie realiseren', 'actief', 92.50, '2023-03-02', '2023-05-01'),
+(7, 7, 'Dashboard Ontwikkeling', 'Management dashboard bouwen', 'actief', 98.00, '2023-03-12', '2023-05-11'),
+(8, 8, 'Database Optimalisatie', 'Performance verbeteren database', 'afgerond', 110.00, '2023-03-22', '2023-05-21'),
+(9, 9, 'Server Onderhoud', 'Onderhoud productieservers', 'betaald', 88.00, '2023-04-01', '2023-05-31'),
+(10, 10, 'Netwerk Upgrade', 'Moderniseren bedrijfsnetwerk', 'actief', 102.00, '2023-04-11', '2023-06-10'),
+(11, 11, 'Webshop Ontwikkeling', 'Nieuwe webshop realiseren', 'actief', 115.00, '2023-04-21', '2023-06-20'),
+(12, 12, 'Data Analyse', 'Analyse klantdata en rapportage', 'afgerond', 97.50, '2023-05-01', '2023-06-30'),
+(13, 13, 'SEO Optimalisatie', 'Verbeteren zoekmachine resultaten', 'gefactureerd', 80.00, '2024-01-16', '2024-03-31'),
+(14, 14, 'AI Chatbot Integratie', 'Slimme chatbot implementeren', 'actief', 125.00, '2024-01-31', '2024-04-15'),
+(15, 15, 'VPN Configuratie', 'Veilige VPN toegang instellen', 'betaald', 89.00, '2024-02-15', '2024-04-30'),
+(16, 16, 'Facturatie Systeem', 'Automatische facturatie bouwen', 'actief', 108.00, '2024-03-01', '2024-05-15'),
+(17, 17, 'Backup Oplossing', 'Nieuwe backup infrastructuur', 'afgerond', 93.00, '2024-03-16', '2024-05-30'),
+(18, 18, 'Microsoft 365 Migratie', 'Migratie naar Microsoft 365', 'betaald', 99.00, '2024-03-31', '2024-06-14'),
+(19, 19, 'HR Portaal', 'Interne HR applicatie ontwikkelen', 'actief', 112.00, '2024-04-15', '2024-06-29'),
+(20, 20, 'Performance Testing', 'Load testing uitvoeren', 'gefactureerd', 91.00, '2024-04-30', '2024-07-14'),
+(21, 21, 'Klantportaal', 'Online klantomgeving ontwikkelen', 'actief', 118.00, '2024-05-15', '2024-07-29'),
+(22, 22, 'Wifi Vernieuwing', 'Nieuwe zakelijke wifi omgeving', 'betaald', 86.00, '2024-05-30', '2024-08-13'),
+(23, 23, 'Ticket Systeem', 'Helpdesk ticketsysteem bouwen', 'actief', 94.00, '2024-06-14', '2024-08-28'),
+(24, 24, 'DevOps Automatisering', 'CI/CD pipelines implementeren', 'actief', 135.00, '2024-06-29', '2024-09-12'),
+(25, 25, 'Pentest Uitvoering', 'Penetratietest uitvoeren', 'afgerond', 140.00, '2024-07-14', '2024-09-27'),
+(26, 26, 'Hosting Migratie', 'Migratie webhosting omgeving', 'betaald', 84.00, '2025-01-16', '2025-04-06'),
+(27, 27, 'BI Rapportages', 'Business intelligence dashboards', 'actief', 119.00, '2025-01-31', '2025-04-21'),
+(28, 28, 'App Onderhoud', 'Onderhoud bestaande mobiele app', 'gefactureerd', 90.00, '2025-02-15', '2025-05-06'),
+(29, 29, 'SSL Implementatie', 'SSL certificaten configureren', 'afgerond', 79.00, '2025-03-02', '2025-05-21'),
+(30, 30, 'Frontend Redesign', 'Nieuwe frontend interface bouwen', 'actief', 101.00, '2025-03-17', '2025-06-05'),
+(31, 31, 'E-mail Migratie', 'Zakelijke e-mail migreren', 'betaald', 87.00, '2025-04-01', '2025-06-20'),
+(32, 32, 'Monitoring Systeem', 'Server monitoring implementeren', 'actief', 96.00, '2025-04-16', '2025-07-05'),
+(33, 33, 'Container Platform', 'Docker omgeving bouwen', 'actief', 128.00, '2025-05-01', '2025-07-20'),
+(34, 34, 'Identity Management', 'Gebruikersbeheer verbeteren', 'afgerond', 109.00, '2025-05-16', '2025-08-04'),
+(35, 35, 'Systeem Integratie', 'Integratie bestaande systemen', 'gefactureerd', 117.00, '2025-05-31', '2025-08-19'),
+(36, 36, 'Cloud Beveiliging', 'Cloud security verbeteren', 'actief', 132.00, '2025-06-15', '2025-09-03'),
+(37, 37, 'Data Warehouse', 'Datawarehouse opzetten', 'actief', 145.00, '2025-06-30', '2025-09-18'),
+(38, 38, 'Kassa Systeem', 'Digitaal kassasysteem ontwikkelen', 'betaald', 89.50, '2025-07-15', '2025-10-03'),
+(39, 39, 'Printer Netwerk', 'Zakelijk printnetwerk configureren', 'afgerond', 76.00, '2026-01-16', '2026-03-17'),
+(40, 40, 'Remote Werkplek', 'Thuiswerk infrastructuur', 'gefactureerd', 104.00, '2026-01-31', '2026-04-01'),
+(41, 41, 'E-learning Platform', 'Online leeromgeving ontwikkelen', 'actief', 122.00, '2026-02-15', '2026-04-16'),
+(42, 42, 'Firewall Configuratie', 'Netwerk firewall instellen', 'betaald', 95.50, '2026-03-02', '2026-05-01'),
+(43, 43, 'ERP Koppeling', 'ERP software integratie', 'actief', 126.00, '2026-03-17', '2026-05-16'),
+(44, 44, 'Chat Applicatie', 'Interne chatapplicatie bouwen', 'afgerond', 93.50, '2026-04-01', '2026-05-31'),
+(45, 45, 'Digitale Handtekening', 'Ondertekening systeem bouwen', 'gefactureerd', 88.50, '2026-04-16', '2026-06-15'),
+(46, 46, 'Linux Migratie', 'Migratie naar Linux servers', 'actief', 138.00, '2026-05-01', '2026-06-30'),
+(47, 47, 'Machine Learning Analyse', 'ML modellen ontwikkelen', 'actief', 150.00, '2026-05-16', '2026-07-15'),
+(48, 48, 'Servicedesk Tool', 'Nieuwe servicedesk software', 'betaald', 92.00, '2026-05-31', '2026-07-30'),
+(49, 49, 'Document Management', 'Documentbeheer systeem bouwen', 'afgerond', 111.00, '2026-06-15', '2026-08-14'),
+(50, 50, 'Compliance Controle', 'AVG compliance controle uitvoeren', 'gefactureerd', 124.00, '2026-06-30', '2026-08-29');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `werkzaamheden`
+-- Tabelstructuur voor tabel `werkzaamheden`
 --
 
-CREATE TABLE `werkzaamheden` (
-  `werkzaamheid_id` int(10) UNSIGNED NOT NULL,
-  `medewerker_id` int(10) UNSIGNED NOT NULL,
-  `opdracht_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `werkzaamheden`;
+CREATE TABLE IF NOT EXISTS `werkzaamheden` (
+  `werkzaamheid_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `medewerker_id` int UNSIGNED NOT NULL,
+  `opdracht_id` int UNSIGNED NOT NULL,
   `datum` date NOT NULL,
   `aantal_uren` decimal(5,2) NOT NULL,
-  `omschrijving` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `omschrijving` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`werkzaamheid_id`),
+  KEY `medewerker_id` (`medewerker_id`),
+  KEY `opdracht_id` (`opdracht_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `werkzaamheden`
+-- Gegevens worden geëxporteerd voor tabel `werkzaamheden`
 --
 
 INSERT INTO `werkzaamheden` (`werkzaamheid_id`, `medewerker_id`, `opdracht_id`, `datum`, `aantal_uren`, `omschrijving`, `created_at`) VALUES
-(1, 1, 2, '2026-06-01', 6.50, 'Backend functionaliteiten ontwikkeld', '2026-06-09 07:46:22'),
-(2, 2, 1, '2026-06-01', 4.00, 'Klantoverleg gevoerd over requirements', '2026-06-09 07:46:22'),
-(3, 3, 4, '2026-06-02', 7.50, 'Projectplanning gecontroleerd', '2026-06-09 07:46:22'),
-(4, 4, 3, '2026-06-02', 5.00, 'Frontend componenten gebouwd', '2026-06-09 07:46:22'),
-(5, 5, 6, '2026-06-03', 8.00, 'API koppeling gerealiseerd', '2026-06-09 07:46:22'),
-(6, 6, 7, '2026-06-03', 3.50, 'Sales presentatie voorbereid', '2026-06-09 07:46:22'),
-(7, 7, 8, '2026-06-04', 6.00, 'Database queries geoptimaliseerd', '2026-06-09 07:46:22'),
-(8, 8, 9, '2026-06-04', 4.50, 'Bugfixes uitgevoerd', '2026-06-09 07:46:22'),
-(9, 9, 10, '2026-06-05', 7.00, 'Teammeeting geleid', '2026-06-09 07:46:22'),
-(10, 10, 11, '2026-06-05', 5.50, 'Webshop functionaliteit toegevoegd', '2026-06-09 07:46:22'),
-(11, 11, 12, '2026-06-06', 6.50, 'Rapportage systeem ontwikkeld', '2026-06-09 07:46:22'),
-(12, 12, 13, '2026-06-06', 4.00, 'SEO instellingen aangepast', '2026-06-09 07:46:22'),
-(13, 13, 14, '2026-06-07', 7.50, 'Nieuwe AI features getest', '2026-06-09 07:46:22'),
-(14, 14, 15, '2026-06-07', 5.00, 'VPN configuratie uitgevoerd', '2026-06-09 07:46:22'),
-(15, 15, 16, '2026-06-08', 8.00, 'Facturatieproces gecontroleerd', '2026-06-09 07:46:22'),
-(16, 16, 17, '2026-06-08', 3.50, 'Backup systeem bijgewerkt', '2026-06-09 07:46:22'),
-(17, 17, 18, '2026-06-09', 6.00, 'Microsoft accounts gemigreerd', '2026-06-09 07:46:22'),
-(18, 18, 19, '2026-06-09', 4.50, 'Klantcontact onderhouden', '2026-06-09 07:46:22'),
-(19, 19, 20, '2026-06-10', 7.00, 'Load testing uitgevoerd', '2026-06-09 07:46:22'),
-(20, 20, 21, '2026-06-10', 5.50, 'Klantportaal verbeterd', '2026-06-09 07:46:22'),
-(21, 21, 22, '2026-06-11', 6.50, 'Wifi netwerk ingesteld', '2026-06-09 07:46:22'),
-(22, 22, 23, '2026-06-11', 4.00, 'Ticket systeem uitgebreid', '2026-06-09 07:46:22'),
-(23, 23, 24, '2026-06-12', 7.50, 'CI/CD pipeline gebouwd', '2026-06-09 07:46:22'),
-(24, 24, 25, '2026-06-12', 5.00, 'Security kwetsbaarheden onderzocht', '2026-06-09 07:46:22'),
-(25, 25, 26, '2026-06-13', 8.00, 'Hosting omgeving verhuisd', '2026-06-09 07:46:22'),
-(26, 26, 27, '2026-06-13', 3.50, 'BI dashboards ontworpen', '2026-06-09 07:46:22'),
-(27, 27, 28, '2026-06-14', 6.00, 'Mobiele app onderhouden', '2026-06-09 07:46:22'),
-(28, 28, 29, '2026-06-14', 4.50, 'SSL certificaten vernieuwd', '2026-06-09 07:46:22'),
-(29, 29, 30, '2026-06-15', 7.00, 'Frontend redesign besproken', '2026-06-09 07:46:22'),
-(30, 30, 31, '2026-06-15', 5.50, 'E-mail migratie getest', '2026-06-09 07:46:22'),
-(31, 31, 32, '2026-06-16', 6.50, 'Monitoring alerts ingesteld', '2026-06-09 07:46:22'),
-(32, 32, 33, '2026-06-16', 4.00, 'Docker containers ingericht', '2026-06-09 07:46:22'),
-(33, 33, 34, '2026-06-17', 7.50, 'Identity management verbeterd', '2026-06-09 07:46:22'),
-(34, 34, 35, '2026-06-17', 5.00, 'Systeemintegraties getest', '2026-06-09 07:46:22'),
-(35, 35, 36, '2026-06-18', 8.00, 'Cloud beveiliging gecontroleerd', '2026-06-09 07:46:22'),
-(36, 36, 37, '2026-06-18', 3.50, 'Datawarehouse tabellen ingericht', '2026-06-09 07:46:22'),
-(37, 37, 38, '2026-06-19', 6.00, 'Kassasysteem geconfigureerd', '2026-06-09 07:46:22'),
-(38, 38, 39, '2026-06-19', 4.50, 'Printers gekoppeld aan netwerk', '2026-06-09 07:46:22'),
-(39, 39, 40, '2026-06-20', 7.00, 'Remote werkplekken getest', '2026-06-09 07:46:22'),
-(40, 40, 41, '2026-06-20', 5.50, 'E-learning modules toegevoegd', '2026-06-09 07:46:22'),
-(41, 41, 42, '2026-06-21', 6.50, 'Firewall regels aangepast', '2026-06-09 07:46:22'),
-(42, 42, 43, '2026-06-21', 4.00, 'ERP koppelingen gebouwd', '2026-06-09 07:46:22'),
-(43, 43, 44, '2026-06-22', 7.50, 'Chat applicatie getest', '2026-06-09 07:46:22'),
-(44, 44, 45, '2026-06-22', 5.00, 'Digitale handtekening geïntegreerd', '2026-06-09 07:46:22'),
-(45, 45, 46, '2026-06-23', 8.00, 'Linux servers gemigreerd', '2026-06-09 07:46:22'),
-(46, 46, 47, '2026-06-23', 3.50, 'Machine learning model getraind', '2026-06-09 07:46:22'),
-(47, 47, 48, '2026-06-24', 6.00, 'Servicedesk software ingericht', '2026-06-09 07:46:22'),
-(48, 48, 49, '2026-06-24', 4.50, 'Documentbeheer getest', '2026-06-09 07:46:22'),
-(49, 49, 50, '2026-06-25', 7.00, 'AVG compliance controle uitgevoerd', '2026-06-09 07:46:22'),
-(50, 50, 1, '2026-06-25', 5.50, 'Design verbeteringen doorgevoerd', '2026-06-09 07:46:22');
+(1, 1, 2, '2026-01-12', 6.50, 'Backend functionaliteiten ontwikkeld', '2026-01-12 17:00:00'),
+(2, 2, 1, '2026-01-25', 4.00, 'Klantoverleg gevoerd over requirements', '2026-01-25 16:30:00'),
+(3, 3, 4, '2026-02-05', 7.50, 'Projectplanning gecontroleerd', '2026-02-05 17:15:00'),
+(4, 4, 3, '2026-02-18', 5.00, 'Frontend componenten gebouwd', '2026-02-18 16:00:00'),
+(5, 5, 6, '2026-03-02', 8.00, 'API koppeling gerealiseerd', '2026-03-02 17:30:00'),
+(6, 6, 7, '2026-03-14', 3.50, 'Sales presentatie voorbereid', '2026-03-14 14:00:00'),
+(7, 7, 8, '2026-03-29', 6.00, 'Database queries geoptimaliseerd', '2026-03-29 16:45:00'),
+(8, 8, 9, '2026-04-03', 4.50, 'Bugfixes uitgevoerd', '2026-04-03 15:20:00'),
+(9, 9, 10, '2026-04-15', 7.00, 'Teammeeting geleid', '2026-04-15 17:00:00'),
+(10, 10, 11, '2026-04-28', 5.50, 'Webshop functionaliteit toegevoegd', '2026-04-28 16:10:00'),
+(11, 11, 12, '2026-05-10', 6.50, 'Rapportage systeem ontwikkeld', '2026-05-10 17:00:00'),
+(12, 12, 13, '2026-05-22', 4.00, 'SEO instellingen aangepast', '2026-05-22 15:00:00'),
+(13, 13, 14, '2026-06-02', 7.50, 'Nieuwe AI features getest', '2026-06-02 17:30:00'),
+(14, 14, 15, '2026-06-15', 5.00, 'VPN configuratie uitgevoerd', '2026-06-15 16:00:00'),
+(15, 15, 16, '2026-06-25', 8.00, 'Facturatieproces gecontroleerd', '2026-06-25 17:45:00'),
+(16, 16, 17, '2026-07-04', 3.50, 'Backup systeem bijgewerkt', '2026-07-04 13:30:00'),
+(17, 17, 18, '2026-07-16', 6.00, 'Microsoft accounts gemigreerd', '2026-07-16 16:15:00'),
+(18, 18, 19, '2026-07-28', 4.50, 'Klantcontact onderhouden', '2026-07-28 15:00:00'),
+(19, 19, 20, '2026-08-05', 7.00, 'Load testing uitgevoerd', '2026-08-05 17:00:00'),
+(20, 20, 21, '2026-08-17', 5.50, 'Klantportaal verbeterd', '2026-08-17 16:20:00'),
+(21, 21, 22, '2026-08-30', 6.50, 'Wifi netwerk ingesteld', '2026-08-30 16:50:00'),
+(22, 22, 23, '2026-09-08', 4.00, 'Ticket systeem uitgebreid', '2026-09-08 14:40:00'),
+(23, 23, 24, '2026-09-20', 7.50, 'CI/CD pipeline gebouwd', '2026-09-20 17:10:00'),
+(24, 24, 25, '2026-10-02', 5.00, 'Security kwetsbaarheden onderzocht', '2026-10-02 16:00:00'),
+(25, 25, 26, '2026-10-14', 8.00, 'Hosting omgeving verhuisd', '2026-10-14 17:35:00'),
+(26, 26, 27, '2026-10-26', 3.50, 'BI dashboards ontworpen', '2026-10-26 13:15:00'),
+(27, 27, 28, '2026-11-04', 6.00, 'Mobiele app onderhouden', '2026-11-04 16:00:00'),
+(28, 28, 29, '2026-11-15', 4.50, 'SSL certificaten vernieuwd', '2026-11-15 15:10:00'),
+(29, 29, 30, '2026-11-27', 7.00, 'Frontend redesign besproken', '2026-11-27 16:45:00'),
+(30, 30, 31, '2026-12-05', 5.50, 'E-mail migratie getest', '2026-12-05 15:50:00'),
+(31, 31, 32, '2026-12-16', 6.50, 'Monitoring alerts ingesteld', '2026-12-16 17:00:00'),
+(32, 32, 33, '2026-12-28', 4.00, 'Docker containers ingericht', '2026-12-28 14:30:00'),
+(33, 33, 34, '2026-01-15', 7.50, 'Identity management verbeterd', '2026-01-15 17:15:00'),
+(34, 34, 35, '2026-02-10', 5.00, 'Systeemintegraties getest', '2026-02-10 16:00:00'),
+(35, 35, 36, '2026-03-05', 8.00, 'Cloud beveiliging gecontroleerd', '2026-03-05 17:45:00'),
+(36, 36, 37, '2026-03-22', 3.50, 'Datawarehouse tabellen ingericht', '2026-03-22 13:00:00'),
+(37, 37, 38, '2026-04-10', 6.00, 'Kassasysteem geconfigureerd', '2026-04-10 16:30:00'),
+(38, 38, 39, '2026-04-25', 4.50, 'Printers gekoppeld aan netwerk', '2026-04-25 15:15:00'),
+(39, 39, 40, '2026-05-15', 7.00, 'Remote werkplekken getest', '2026-05-15 17:00:00'),
+(40, 40, 41, '2026-06-01', 5.50, 'E-learning modules toegevoegd', '2026-06-01 16:10:00'),
+(41, 41, 42, '2026-07-10', 6.50, 'Firewall regels aangepast', '2026-07-10 16:50:00'),
+(42, 42, 43, '2026-08-20', 4.00, 'ERP koppelingen gebouwd', '2026-08-20 14:20:00'),
+(43, 43, 44, '2026-09-12', 7.50, 'Chat applicatie getest', '2026-09-12 17:15:00'),
+(44, 44, 45, '2026-10-05', 5.00, 'Digitale handtekening geïntegreerd', '2026-10-05 16:00:00'),
+(45, 45, 46, '2026-11-10', 8.00, 'Linux servers gemigreerd', '2026-11-10 17:30:00'),
+(46, 46, 47, '2026-12-01', 3.50, 'Machine learning model getraind', '2026-12-01 14:00:00'),
+(47, 47, 48, '2026-05-18', 6.00, 'Servicedesk software ingericht', '2026-05-18 16:05:00'),
+(48, 48, 49, '2026-07-22', 4.50, 'Documentbeheer getest', '2026-07-22 15:00:00'),
+(49, 49, 50, '2026-09-15', 7.00, 'AVG compliance controle uitgevoerd', '2026-09-15 17:00:00'),
+(50, 50, 1, '2026-11-20', 5.50, 'Design verbeteringen doorgevoerd', '2026-11-20 16:30:00');
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `facturen`
---
-ALTER TABLE `facturen`
-  ADD PRIMARY KEY (`factuur_id`),
-  ADD KEY `klant_id` (`klant_id`),
-  ADD KEY `opdracht_id` (`opdracht_id`);
-
---
--- Indexes for table `klanten`
---
-ALTER TABLE `klanten`
-  ADD PRIMARY KEY (`klanten_ID`);
-
---
--- Indexes for table `medewerkers`
---
-ALTER TABLE `medewerkers`
-  ADD PRIMARY KEY (`medewerker_id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `opdrachten`
---
-ALTER TABLE `opdrachten`
-  ADD PRIMARY KEY (`opdracht_id`),
-  ADD KEY `klant_id` (`klant_id`);
-
---
--- Indexes for table `werkzaamheden`
---
-ALTER TABLE `werkzaamheden`
-  ADD PRIMARY KEY (`werkzaamheid_id`),
-  ADD KEY `medewerker_id` (`medewerker_id`),
-  ADD KEY `opdracht_id` (`opdracht_id`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- Beperkingen voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `facturen`
---
-ALTER TABLE `facturen`
-  MODIFY `factuur_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT for table `klanten`
---
-ALTER TABLE `klanten`
-  MODIFY `klanten_ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-
---
--- AUTO_INCREMENT for table `medewerkers`
---
-ALTER TABLE `medewerkers`
-  MODIFY `medewerker_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT for table `opdrachten`
---
-ALTER TABLE `opdrachten`
-  MODIFY `opdracht_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT for table `werkzaamheden`
---
-ALTER TABLE `werkzaamheden`
-  MODIFY `werkzaamheid_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `facturen`
+-- Beperkingen voor tabel `facturen`
 --
 ALTER TABLE `facturen`
   ADD CONSTRAINT `facturen_ibfk_1` FOREIGN KEY (`klant_id`) REFERENCES `klanten` (`klanten_ID`),
   ADD CONSTRAINT `facturen_ibfk_2` FOREIGN KEY (`opdracht_id`) REFERENCES `opdrachten` (`opdracht_id`);
 
 --
--- Constraints for table `opdrachten`
+-- Beperkingen voor tabel `opdrachten`
 --
 ALTER TABLE `opdrachten`
   ADD CONSTRAINT `opdrachten_ibfk_1` FOREIGN KEY (`klant_id`) REFERENCES `klanten` (`klanten_ID`);
 
 --
--- Constraints for table `werkzaamheden`
+-- Beperkingen voor tabel `werkzaamheden`
 --
 ALTER TABLE `werkzaamheden`
   ADD CONSTRAINT `werkzaamheden_ibfk_1` FOREIGN KEY (`medewerker_id`) REFERENCES `medewerkers` (`medewerker_id`),
