@@ -76,6 +76,19 @@ ini_set('display_errors', 1);
 
 <a class="fancy-button" href="add_klant.php">Nieuwe klant toevoegen</a>
 
+<?php
+if(isset($_GET['error']) && $_GET['error'] == 'facturen'){
+    echo "<div class='error'>
+            Deze klant kan niet worden verwijderd omdat er nog facturen aan gekoppeld zijn.
+          </div>";
+}
+
+if(isset($_GET['success'])){
+    echo "<div class='success'>
+            Klant succesvol verwijderd.
+          </div>";
+}
+?>
 
 <?php 
      $db_server = "localhost";

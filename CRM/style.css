@@ -317,3 +317,19 @@ tr:last-child td {
 .logout-btn:hover {
     background-color: #3576c9 !important;
 }
+
+.error {
+    background: #ffdddd;
+    color: #a00000;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #a00000;
+}
+
+.success {
+    background: #ddffdd;
+    color: #008000;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #008000;
+}

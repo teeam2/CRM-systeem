@@ -16,12 +16,20 @@ $conn = mysqli_connect("localhost", "root", "", "crm_systeem");
 
 if(isset($_GET['id']))
 {
-    $id = $_GET['id'];
+    $id = (int)$_GET['id'];
 
-    $sql = "DELETE FROM klanten WHERE klanten_ID = $id";
+    try {
 
-    mysqli_query($conn, $sql);
+        $sql = "DELETE FROM klanten WHERE klanten_ID = $id";
+        mysqli_query($conn, $sql);
+
+        header("Location: CRM klanten.php?success=1");
+        exit();
+
+    } catch (mysqli_sql_exception $e) {
+
+        header("Location: CRM klanten.php?error=facturen");
+        exit();
+
+    }
 }
-
-header("Location: CRM klanten.php");
-exit();
