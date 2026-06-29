@@ -9,13 +9,7 @@ if(!isset($_SESSION['voornaam'])){
     exit;
 }
 
-if($_SESSION['rol'] != 'admin'){
-?>
-    <p>Geen toegang</p>
-    <a href="CRM home.php">← ga naar home</a>
-<?php
-    exit;
-}
+
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -133,11 +127,21 @@ while($row = mysqli_fetch_assoc($result4)){
 <ul class="navbar">
     <li class="nav-title">Mijn CRM</li>
     <li><a href="CRM home.php">Home</a></li>
+<?php
+  if($_SESSION['rol'] == 'admin'){
+?>
   <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
   <li><a href="CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
   <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
+<?php
+}?>
   <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
+<?php
+  if($_SESSION['rol'] == 'admin'){
+?>
   <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
+<?php
+}?>
   <li><a class="active" href="#">Grafieken</a></li>
 
   <li class="search-container">

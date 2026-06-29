@@ -30,11 +30,21 @@ $medewerker_id = $_SESSION['medewerker_id'];
 <ul class="navbar">
   <li class="nav-title">Mijn CRM</li>
   <li><a href="../CRM home.php">Home</a></li>
+<?php
+  if($_SESSION['rol'] == 'admin'){
+?>
   <li><a href="../CRM klanten/CRM klanten.php">Klanten</a></li>
   <li><a href="../CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
   <li><a href="../CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
+<?php
+}?>
   <li><a class="active" href="#">Werkzaamheden</a></li>
+<?php
+  if($_SESSION['rol'] == 'admin'){
+?>
   <li><a href="../CRM facturen/CRM facturen.php">Facturen</a></li>
+<?php
+}?>
   <li><a href="../CRM grafieken.php">Grafieken</a></li>
 
   <li class="search-container">

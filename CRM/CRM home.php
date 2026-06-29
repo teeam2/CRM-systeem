@@ -160,11 +160,21 @@ ini_set('display_errors', 1);
     <li class="nav-title">Mijn CRM</li>
 
     <li><a class="active" href="#">Home</a></li>
+<?php
+  if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){
+?>
     <li><a href="CRM klanten/CRM klanten.php">Klanten</a></li>
     <li><a href="CRM medewerkers/CRM medewerkers.php">Medewerkers</a></li>
     <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
+<?php
+}?>
     <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
+<?php
+  if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){
+?>
     <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
+<?php
+}?>
     <li><a href="CRM grafieken.php">Grafieken</a></li>
 
     <!-- knop rechts -->
