@@ -67,7 +67,7 @@ if(isset($_POST['toevoegen']))
     <input type="email" name="email"><br><br>
 
     Telefoon:<br>
-    <input type="text" name="telefoon"><br><br>
+    <input type="number" name="telefoon"><br><br>
 
     <input type="submit" name="toevoegen" value="Toevoegen">
 

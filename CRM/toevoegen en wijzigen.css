@@ -33,6 +33,7 @@ form {
 
 form input[type="text"],
 form input[type="email"],
+form input[type="number"],
 form input[type="password"] {
     padding: 10px;
     border: 1px solid #ccc;
