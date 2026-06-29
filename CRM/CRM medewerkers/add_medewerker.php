@@ -45,9 +45,12 @@ Tussenvoegsel: <input type="text" name="tussenvoegsel"><br>
 Achternaam: <input type="text" name="achternaam"><br>
 Functie: <input type="text" name="functie"><br>
 Email: <input type="email" name="email"><br>
-Wachtwoord: <input type="text" name="wachtwoord"><br>
-Telefoon: <input type="text" name="telefoon"><br>
-Rol: <input type="text" name="rol"><br>
+Wachtwoord: <input type="password" name="wachtwoord"><br>
+Telefoon: <input type="number" name="telefoon"><br>
+Rol: <select id="rol" name="rol"> 
+    <option value="medewerker">Medewerker</option> 
+    <option value="admin">Admin</option> 
+</select><br>
 
 <input type="submit" name="toevoegen" value="Toevoegen">
 
