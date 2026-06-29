@@ -81,14 +81,24 @@ if(isset($_POST['login'])){
     <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
 <?php
 }?>
+<?php
+  if(isset($_SESSION['rol'])){
+?>
     <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
+<?php
+}?>
 <?php
   if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){
 ?>
     <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
-    <?php
+<?php
 }?>
+<?php
+  if(isset($_SESSION['rol'])){
+?>
     <li><a href="CRM grafieken.php">Grafieken</a></li>
+<?php
+}?>
 
     <!-- knop rechts -->
     <li class="nav-right">

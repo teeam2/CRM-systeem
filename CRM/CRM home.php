@@ -168,14 +168,24 @@ ini_set('display_errors', 1);
     <li><a href="CRM opdrachten/CRM opdrachten.php">Opdrachten</a></li>
 <?php
 }?>
+<?php
+  if(isset($_SESSION['rol'])){
+?>
     <li><a href="CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
+<?php
+}?>
 <?php
   if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){
 ?>
     <li><a href="CRM facturen/CRM facturen.php">Facturen</a></li>
 <?php
 }?>
+<?php
+  if(isset($_SESSION['rol'])){
+?>
     <li><a href="CRM grafieken.php">Grafieken</a></li>
+<?php
+}?>
 
     <!-- knop rechts -->
     <li class="nav-right">
@@ -246,11 +256,16 @@ ini_set('display_errors', 1);
         </div>
 <?php
 }?>
+<?php
+  if(isset($_SESSION['rol'])){
+?>
         <div class="card">
             <h3>Werkzaamheden</h3>
             <p>Bekijk al je werkzaamheden.</p>
             <a href="CRM werkzaamheden/CRM werkzaamheden.php" class="card-button">Werkzaamheden</a>
         </div>
+<?php
+}?>
 <?php
   if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){
 ?>
@@ -261,11 +276,16 @@ ini_set('display_errors', 1);
         </div>
 <?php
 }?>
+<?php
+  if(isset($_SESSION['rol'])){
+?>
         <div class="card">
             <h3>Grafieken</h3>
             <p>Bekijk al je Grafieken.</p>
             <a href="CRM grafieken.php" class="card-button">Grafieken</a>
         </div>
+<?php
+}?>
 
                 <div class="card">
             <h3>Inloggen</h3>
