@@ -223,6 +223,9 @@ ini_set('display_errors', 1);
 
     <!-- Dashboard kaarten -->
     <section class="cards">
+<?php
+  if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){
+?>
         <div class="card">
             <h3>Klanten</h3>
             <p>Bekijk al je klanten.</p>
@@ -241,19 +244,23 @@ ini_set('display_errors', 1);
             <p>Bekijk al je opdrachten.</p>
             <a href="CRM opdrachten/CRM opdrachten.php" class="card-button">Opdrachten</a>
         </div>
-
+<?php
+}?>
         <div class="card">
             <h3>Werkzaamheden</h3>
             <p>Bekijk al je werkzaamheden.</p>
             <a href="CRM werkzaamheden/CRM werkzaamheden.php" class="card-button">Werkzaamheden</a>
         </div>
-
+<?php
+  if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){
+?>
         <div class="card">
             <h3>Facturen</h3>
             <p>Bekijk al je facturen.</p>
             <a href="CRM facturen/CRM facturen.php" class="card-button">Facturen</a>
         </div>
-
+<?php
+}?>
         <div class="card">
             <h3>Grafieken</h3>
             <p>Bekijk al je Grafieken.</p>
