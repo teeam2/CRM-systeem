@@ -288,11 +288,19 @@ ini_set('display_errors', 1);
 <?php
 }?>
 
-                <div class="card">
-            <h3>Inloggen</h3>
-            <p>Login.</p>
-            <a href="CRM Inlog pagina.php" class="card-button">Inloggen</a>
+        <div class="card">
+            <h3>AVG</h3>
+            <p>Bekijk de AVG.</p>
+            <a href="CRM AVG.php" class="card-button">AVG</a>
         </div>
+
+<?php if (!isset($_SESSION['voornaam'])): ?>
+    <div class="card">
+        <h3>Inloggen</h3>
+        <p>Login.</p>
+        <a href="CRM Inlog pagina.php" class="card-button">Inloggen</a>
+    </div>
+<?php endif; ?>
     </section>
 
 </body>
