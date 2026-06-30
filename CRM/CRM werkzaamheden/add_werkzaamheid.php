@@ -45,9 +45,18 @@ if(isset($_POST['toevoegen']))
 }
 ?>
 
-<h2>Nieuwe werkzaamheid</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <button type="button" onclick="window.location.href='CRM werkzaamheden.php'">
+    Terug
+    </button>
+    <title>Werkzaamheid toevoegen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
+</head>
+<body>
 
-<link rel="stylesheet" href="../toevoegen en wijzigen.css">
+<h2>Nieuwe werkzaamheid toevoegen</h2>
 
 <form method="post">
 

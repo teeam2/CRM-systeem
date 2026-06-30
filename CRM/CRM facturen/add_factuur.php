@@ -46,9 +46,18 @@ if(isset($_POST['toevoegen']))
 }
 ?>
 
-<h2>Nieuwe factuur</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <button type="button" onclick="window.location.href='CRM facturen.php'">
+    Terug
+    </button>
+    <title>Factuur toevoegen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
+</head>
+<body>
 
-<link rel="stylesheet" href="../toevoegen en wijzigen.css">
+<h2>Nieuwe factuur toevoegen</h2>
 
 <form method="post">
 

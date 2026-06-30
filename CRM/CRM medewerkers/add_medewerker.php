@@ -36,9 +36,20 @@ if(isset($_POST['toevoegen']))
 }
 ?>
 
-<form method="post">
+<!DOCTYPE html>
+<html>
+<head>
+    <button type="button" onclick="window.location.href='CRM medewerkers.php'">
+    Terug
+</button>
+    <title>Medewerker toevoegen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
+</head>
+<body>
 
-<link rel="stylesheet" href="../toevoegen en wijzigen.css">
+<h2>Nieuwe medewerker toevoegen</h2>
+
+<form method="post">
 
 Voornaam: <input type="text" name="voornaam"><br>
 Tussenvoegsel: <input type="text" name="tussenvoegsel"><br>
