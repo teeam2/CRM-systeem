@@ -13,6 +13,18 @@ if(!isset($_SESSION['voornaam'])){
 
 $conn = mysqli_connect("localhost", "root", "", "crm_systeem");
 
+$medewerkers = mysqli_query($conn, "
+    SELECT medewerker_id, voornaam 
+    FROM medewerkers 
+    ORDER BY medewerker_id
+");
+
+$opdrachten = mysqli_query($conn, "
+    SELECT opdracht_id, titel 
+    FROM opdrachten 
+    ORDER BY opdracht_id
+");
+
 if(isset($_POST['toevoegen']))
 {
     $medewerker_id = $_POST['medewerker_id'];
@@ -39,23 +51,44 @@ if(isset($_POST['toevoegen']))
 
 <form method="post">
 
-Medewerker ID:<br>
+Medewerker:<br>
 
 <?php if($rol == 'admin'): ?>
 
-    <input type="text" name="medewerker_id"><br><br>
+<select name="medewerker_id" required>
+
+    <?php while($m = mysqli_fetch_assoc($medewerkers)) { ?>
+        <option value="<?php echo $m['medewerker_id']; ?>">
+            <?php echo $m['medewerker_id'] . " - " . $m['voornaam']; ?>
+        </option>
+    <?php } ?>
+
+</select>
+
+<br><br>
 
 <?php else: ?>
 
-    <input type="text" value="<?= $medewerker_id_session ?>" disabled>
-    <input type="hidden" name="medewerker_id" value="<?= $medewerker_id_session ?>">
+<input type="text" value="<?= $medewerker_id_session ?>" disabled>
+<input type="hidden" name="medewerker_id" value="<?= $medewerker_id_session ?>">
 
-    <br><br>
+<br><br>
 
 <?php endif; ?>
 
-Opdracht ID:<br>
-<input type="text" name="opdracht_id"><br><br>
+Opdracht:<br>
+
+<select name="opdracht_id" required>
+
+    <?php while($o = mysqli_fetch_assoc($opdrachten)) { ?>
+        <option value="<?php echo $o['opdracht_id']; ?>">
+            <?php echo $o['opdracht_id'] . " - " . $o['titel']; ?>
+        </option>
+    <?php } ?>
+
+</select>
+
+<br><br>
 
 Datum:<br>
 <input type="date" name="datum"><br><br>
