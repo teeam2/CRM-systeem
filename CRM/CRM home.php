@@ -186,6 +186,7 @@ ini_set('display_errors', 1);
     <li><a href="CRM grafieken.php">Grafieken</a></li>
 <?php
 }?>
+    <li><a href="CRM AVG.php">AVG</a></li>
 
     <!-- knop rechts -->
     <li class="nav-right">

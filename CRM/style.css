@@ -333,3 +333,46 @@ tr:last-child td {
     margin: 10px 0;
     border: 1px solid #008000;
 }
+
+/* ===== AVG PAGINA STYLING ===== */
+
+.avg-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+    text-align: center;
+}
+
+.avg-container h1 {
+    margin-bottom: 10px;
+}
+
+.avg-container h3 {
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.avg-rule {
+    background: white;
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: left;
+    transition: 0.2s;
+}
+
+.avg-rule:hover {
+    transform: translateY(-3px);
+}
+
+.avg-rule h4 {
+    margin: 0 0 8px 0;
+    color: #4a90e2;
+}
+
+.avg-rule p {
+    margin: 0;
+    color: #333;
+    line-height: 1.5;
+}

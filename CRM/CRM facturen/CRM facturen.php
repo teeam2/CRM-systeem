@@ -40,6 +40,7 @@ ini_set('display_errors', 1);
     <li><a href="../CRM werkzaamheden/CRM werkzaamheden.php">Werkzaamheden</a></li>
     <li><a class="active" href="#">Facturen</a></li>
     <li><a href="../CRM grafieken.php">Grafieken</a></li>
+    <li><a href="../CRM AVG.php">AVG</a></li>
 
 <li class="search-container">
     <form action="" method="get">

@@ -46,6 +46,7 @@ $medewerker_id = $_SESSION['medewerker_id'];
 <?php
 }?>
   <li><a href="../CRM grafieken.php">Grafieken</a></li>
+    <li><a href="../CRM AVG.php">AVG</a></li>
 
   <li class="search-container">
     <form action="" method="get">

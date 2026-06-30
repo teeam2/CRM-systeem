@@ -143,6 +143,7 @@ while($row = mysqli_fetch_assoc($result4)){
 <?php
 }?>
   <li><a class="active" href="#">Grafieken</a></li>
+  <li><a href="CRM AVG.php">AVG</a></li>
 
   <li class="search-container">
     <form action="" method="get">

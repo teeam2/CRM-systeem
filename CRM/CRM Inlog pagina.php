@@ -72,6 +72,7 @@ if(isset($_POST['login'])){
 <body>
 
 <ul class="navbar">
+    <li class="nav-title">Mijn CRM</li>
     <li><a href="CRM home.php">Home</a></li>
 <?php
   if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){
@@ -99,6 +100,7 @@ if(isset($_POST['login'])){
     <li><a href="CRM grafieken.php">Grafieken</a></li>
 <?php
 }?>
+    <li><a href="CRM AVG.php">AVG</a></li>
 
     <!-- knop rechts -->
     <li class="nav-right">
