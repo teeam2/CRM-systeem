@@ -106,6 +106,17 @@ if(isset($_POST['versturen'])){
 }
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <button type="button" onclick="window.location.href='CRM facturen.php'">
+    Terug
+    </button>
+    <title>Factuur versturen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
+</head>
+<body>
+
 <h2>Factuur versturen</h2>
 
 <link rel="stylesheet" href="../toevoegen en wijzigen.css">
@@ -125,3 +136,6 @@ Email klant:<br>
        value="Verstuur factuur">
 
 </form>
+
+</body>
+</html>
