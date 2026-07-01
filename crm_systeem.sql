@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Gegenereerd op: 17 jun 2026 om 08:11
+-- Gegenereerd op: 01 jul 2026 om 08:10
 -- Serverversie: 8.4.7
 -- PHP-versie: 8.3.28
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `facturen` (
   PRIMARY KEY (`factuur_id`),
   KEY `klant_id` (`klant_id`),
   KEY `opdracht_id` (`opdracht_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `facturen`
@@ -95,7 +95,8 @@ INSERT INTO `facturen` (`factuur_id`, `klant_id`, `opdracht_id`, `factuurdatum`,
 (47, 47, 47, '2026-07-21', 7850.50, 'betaald', '2026-06-09 08:19:05'),
 (48, 48, 48, '2026-07-22', 2430.00, 'verzonden', '2026-06-09 08:19:05'),
 (49, 49, 49, '2026-07-23', 3375.00, 'betaald', '2026-06-09 08:19:05'),
-(50, 50, 50, '2026-07-24', 4180.00, 'open', '2026-06-09 08:19:05');
+(50, 50, 50, '2026-07-24', 4180.00, 'open', '2026-06-09 08:19:05'),
+(54, 54, 52, '2026-06-23', 6000.00, '', '2026-06-23 11:11:23');
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `klanten` (
   `email` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `PhoneNumber` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`klanten_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `klanten`
@@ -170,7 +171,8 @@ INSERT INTO `klanten` (`klanten_ID`, `Voornaam`, `Tussenvoegsel`, `Achternaam`, 
 (47, 'Kevin', '', 'Jacobs', 'WebWizards', 'CFO', 'kevin.jacobs@email.com', '0612345724'),
 (48, 'Danique', '', 'Wolters', 'DataDynamics', 'Marketing Manager', 'danique.wolters@email.com', '0612345725'),
 (49, 'Patrick', 'de', 'Boer', 'CloudCompany', 'HR Manager', 'patrick.deboer@email.com', '0612345726'),
-(50, 'Laura', 'van', 'Dalen', 'SmartSolutions', 'Sales Representative', 'laura.vandalen@email.com', '0612345727');
+(50, 'Laura', 'van', 'Dalen', 'SmartSolutions', 'Sales Representative', 'laura.vandalen@email.com', '0612345727'),
+(54, 'niet', 'undercover ', 'finn', 'CodeMasters', 'Developer', 'niet.undercover.finn@fanciemail.com', '06 87654321');
 
 -- --------------------------------------------------------
 
@@ -192,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `medewerkers` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`medewerker_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `medewerkers`
@@ -269,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `opdrachten` (
   `einddatum` date DEFAULT NULL,
   PRIMARY KEY (`opdracht_id`),
   KEY `klant_id` (`klant_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `opdrachten`
@@ -325,7 +327,8 @@ INSERT INTO `opdrachten` (`opdracht_id`, `klant_id`, `titel`, `beschrijving`, `s
 (47, 47, 'Machine Learning Analyse', 'ML modellen ontwikkelen', 'actief', 150.00, '2026-05-16', '2026-07-15'),
 (48, 48, 'Servicedesk Tool', 'Nieuwe servicedesk software', 'betaald', 92.00, '2026-05-31', '2026-07-30'),
 (49, 49, 'Document Management', 'Documentbeheer systeem bouwen', 'afgerond', 111.00, '2026-06-15', '2026-08-14'),
-(50, 50, 'Compliance Controle', 'AVG compliance controle uitvoeren', 'gefactureerd', 124.00, '2026-06-30', '2026-08-29');
+(50, 50, 'Compliance Controle', 'AVG compliance controle uitvoeren', 'gefactureerd', 124.00, '2026-06-30', '2026-08-29'),
+(52, 54, 'coole opdracht', 'iets super cool', 'actief', 2000.00, '2026-06-23', '0000-00-00');
 
 -- --------------------------------------------------------
 
