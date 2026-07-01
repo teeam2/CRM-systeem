@@ -39,6 +39,17 @@ if(isset($_POST['opslaan']))
     exit();
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <button type="button" onclick="window.location.href='CRM medewerkers.php'">
+    Terug
+    </button>
+    <title>Medewerker wijzigen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
+</head>
+<body>
+
 
 <form method="post">
 
@@ -56,3 +67,5 @@ Rol: <input type="text" name="rol" value="<?= $row['rol'] ?>"><br>
 <input type="submit" name="opslaan" value="Opslaan">
 
 </form>
+</body>
+</html>
