@@ -16,8 +16,9 @@ ini_set('display_errors', 1);
 <!-- Navigatie -->
 <ul class="navbar">
 
-    <!-- Titel links -->
-    <li class="nav-title">Mijn CRM</li>
+<li class="nav-title">
+    <img src="gilde devops logo.png" alt="Mijn CRM" class="logo">
+</li>
 
     <li><a href="CRM home.php">Home</a></li>
 <?php

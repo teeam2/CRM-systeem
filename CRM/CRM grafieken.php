@@ -125,7 +125,9 @@ while($row = mysqli_fetch_assoc($result4)){
 <body>
 
 <ul class="navbar">
-    <li class="nav-title">Mijn CRM</li>
+    <li class="nav-title">
+    <img src="gilde devops logo.png" alt="Mijn CRM" class="logo">
+</li>
     <li><a href="CRM home.php">Home</a></li>
 <?php
   if($_SESSION['rol'] == 'admin'){

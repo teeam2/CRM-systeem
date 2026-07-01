@@ -72,7 +72,9 @@ if(isset($_POST['login'])){
 <body>
 
 <ul class="navbar">
-    <li class="nav-title">Mijn CRM</li>
+    <li class="nav-title">
+    <img src="gilde devops logo.png" alt="Mijn CRM" class="logo">
+</li>
     <li><a href="CRM home.php">Home</a></li>
 <?php
   if(isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){
