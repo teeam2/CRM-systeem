@@ -39,6 +39,17 @@ if(isset($_POST['opslaan']))
 }
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <button type="button" onclick="window.location.href='CRM opdrachten.php'">
+    Terug
+    </button>
+    <title>Opdracht wijzigen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
+</head>
+<body>
+
 <h2>Opdracht wijzigen</h2>
 
 <link rel="stylesheet" href="../toevoegen en wijzigen.css">
@@ -69,3 +80,5 @@ Einddatum:<br>
 <input type="submit" name="opslaan" value="Opslaan">
 
 </form>
+</body>
+</html>

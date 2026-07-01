@@ -51,6 +51,9 @@ if(isset($_POST['opslaan']))
 <!DOCTYPE html>
 <html>
 <head>
+    <button type="button" onclick="window.location.href='CRM klanten.php'">
+    Terug
+    </button>
     <title>Klant wijzigen</title>
     <link rel="stylesheet" href="../toevoegen en wijzigen.css">
 </head>

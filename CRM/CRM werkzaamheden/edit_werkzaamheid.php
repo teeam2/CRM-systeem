@@ -28,6 +28,17 @@ if(isset($_POST['opslaan']))
 }
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <button type="button" onclick="window.location.href='CRM werkzaamheden.php'">
+    Terug
+    </button>
+    <title>Werkzaamheid wijzigen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
+</head>
+<body>
+
 <h2>Werkzaamheid wijzigen</h2>
 
 <link rel="stylesheet" href="../toevoegen en wijzigen.css">
@@ -56,3 +67,6 @@ Omschrijving:<br>
 <input type="submit" name="opslaan" value="Opslaan">
 
 </form>
+
+</body>
+</html>

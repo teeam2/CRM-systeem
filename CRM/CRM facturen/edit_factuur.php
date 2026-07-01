@@ -37,6 +37,17 @@ if(isset($_POST['opslaan']))
 }
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <button type="button" onclick="window.location.href='CRM facturen.php'">
+    Terug
+    </button>
+    <title>Factuur wijzigen</title>
+    <link rel="stylesheet" href="../toevoegen en wijzigen.css">
+</head>
+<body>
+
 <h2>Factuur wijzigen</h2>
 
 <link rel="stylesheet" href="../toevoegen en wijzigen.css">
@@ -61,3 +72,6 @@ Status:<br>
 <input type="submit" name="opslaan" value="Opslaan">
 
 </form>
+
+</body>
+</html>
